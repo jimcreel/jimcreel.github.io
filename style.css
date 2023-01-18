@@ -72,7 +72,7 @@
     }
     #week, #card, #card-body, #card-title{
         display: block;
-        width: 80%
+        width: 80%;
         border: 1px solid lightgray;
     }
-  }
+}
