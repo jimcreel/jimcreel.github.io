@@ -40,34 +40,33 @@
 	<body>
 		
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <div class="navbar-brand">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>                        
-          </button>
-          <a class="navbar-brand" href="#">Portfolio</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+			<div class="container-fluid">
+			  <a class="navbar-brand" href="#">Navbar</a>
+			  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				  <li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="#">Home</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#">About Me</a>
+				  </li>
+				  
+				  
+				</ul>
+				
+				</form>
+			  </div>
+			</div>
+		  </nav>
 		
 			<div class="container">
         <div class="row row-cols-3">
 				<div class="col-xs-4">
 
-						<h3>Disney Parks Reservations Date Selector</h3>
+						<h3>Disney Parks Reservations </h3>
 							<div id="Resort">
 								<label for="selectResort">Desired Disney Resort</label
 								><select
@@ -136,9 +135,9 @@
                   <option value="ANY">Any Park</option>
 								</select>
 							</div>
-							<div  class="datepicker" id="calendarForm">
+							<div  class="datepicker form-text-sm" id="calendarForm">
 								<!-- Date input -->
-								<label class="control-label" for="date">Select your Date</label>
+								<label  for="date">Select your Date</label>
 								<input
 									
 									id="date"
@@ -163,8 +162,8 @@
             </div>
             
 
-				<div class="col-xs-4">
-                <div class="card" style="border: 1px solid black">
+				<div class="col-xs-4 hidden" id="cardStatus">
+                <div class="card" >
                   
                   <div class="card-body">
                     <h5 class="card-title" id="card-title">Reservation Availability</h5>

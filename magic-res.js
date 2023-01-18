@@ -19,8 +19,20 @@ $(document).ready(function () {
   date_input.datepicker(options);
 });
 
+/* changes date to mm/dd/yyyy */
+function displayDate(date){
+  strDay = date.slice(5,7)
+  strMonth= date.slice (-2)
+  strYear = date.slice(2,4)
+  modDate = `${strDay}/${strMonth}/${strYear}`
+  return modDate;
+}
 /*hide and reveal contextual menus depending on resort*/
 function testResort(val) {
+  const cardStatus = document.getElementById("cardStatus").classList.contains("hidden")
+  if (!cardStatus) {
+    document.getElementById("cardStatus").classList.toggle("hidden")
+  }
   if (val == "DLR") {
     document.getElementById("DLRdrops").classList.remove("hidden");
     document.getElementById("WDWdrops").classList.add("hidden");
@@ -73,6 +85,10 @@ function submitForm() {
     pass = document.querySelector("#selectWDWpass").value;
     park = document.querySelector("#selectWDWpark").value;
     url = wdwUrl;
+  }
+  const cardStatus = document.getElementById("cardStatus").classList.contains("hidden")
+  if (cardStatus) {
+    document.getElementById("cardStatus").classList.toggle("hidden")
   }
   parkDate = document.querySelector("#date").value;
   
@@ -155,13 +171,13 @@ function getResortData(url, pass, park, parkDate) {
 
 /* function to display weekly data on the right third*/
 function displayWeek(weekArray) {
-  var currentNode = document.getElementById("displayWeek");
+  
   for (element in weekArray) {
     
-    var displayDate = weekArray[element].date;
-    var weekDay = new Date(displayDate).toLocaleDateString("en-US", { weekday: "long"});
+    var weekDate = displayDate(weekArray[element].date);
+    var weekDay = new Date(weekArray[element].date).toLocaleDateString("en-US", { weekday: "long"});
     
-    var formatDate = `${weekDay} ${displayDate}`
+    var formatDate = `${weekDay} ${weekDate}`
     
     var weekCard = `week${element}Title`
     var weekText = `week${element}Text`
@@ -216,7 +232,7 @@ function weekCalendar() {
   }
   weekResort = document.querySelector("#weekSelectResort").value;
   document.getElementById("weekCalendar").classList.toggle("hidden");
-  var arrayLength = 7;
+  
   
 
   if (weekResort == "DLR") {
@@ -236,8 +252,9 @@ function weekCalendar() {
 }
 /* this function creates the middle third card with notification data */
 function cardNotification(notificationObject, pass) {
-  notifPark = notificationObject.facilityId;
-  notifDate = notificationObject.date;
+  let notifPark = notificationObject.facilityId;
+  let notifDate = notificationObject.date;
+  let textDate = displayDate(notifDate);
   notifAvail = notificationObject.slots[0].available;
   reason = notificationObject.slots[0].unavailableReason;
   var parkText = "";
@@ -291,13 +308,13 @@ function cardNotification(notificationObject, pass) {
     notificationObject.facilityId;
     document.getElementById(
       "card-text"
-    ).innerHTML = `Reservations are available for ${notifPark} on ${notifDate} for ${passText}`;
+    ).innerHTML = `Reservations are available for ${notifPark} on ${textDate} for ${passText}`;
     document.getElementById("card-title").innerHTML = "Come on Down!";
   } else {
     reason = notificationObject.slots[0].unavailableReason;
     document.getElementById(
       "card-text"
-    ).innerHTML = `Reservations are not available for ${notifPark} on ${parkDate} because ${reasonText}`;
+    ).innerHTML = `Reservations are not available for ${notifPark} on ${textDate} because ${reasonText}`;
     document.getElementById("card-title").innerHTML = titleText;
     document.getElementById("card-button").innerHTML = `Sorry`;
   }
