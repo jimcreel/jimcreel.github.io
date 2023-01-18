@@ -2,7 +2,10 @@
     display: none;
     visibility: hidden;
 }
-
+body {
+    background: url(/img/DisneyCastle.jpg);
+    background-size: cover;
+}
 
 #calendarSelector {
     max-width: 250px;
@@ -40,6 +43,13 @@
 
 #card {
     border: 1px solid gray;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+    border-radius: 3px;
 }
 
 @media (max-width: 500px){
