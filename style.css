@@ -2,6 +2,7 @@
     display: none;
     visibility: hidden;
 }
+
 body {
     background: url(/img/DisneyCastle.jpg);
     background-size: cover;
