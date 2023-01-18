@@ -106,6 +106,54 @@ function userData(resort, pass, park, parkDate) {
 }
 
 /* fetches and sorts data into arrays for processing */
+function getWeekData(url, pass){
+  fetch(url) /* grab array from disney site */
+    .then((response) => response.json())
+    .then((result) => {
+      var weekArray = [];
+      listLength = 7;
+      for (let i = 0; i < listLength; i++) {
+        itemDate = new Date();
+        itemDate.setDate(itemDate.getDate() + i);
+        itemDate = itemDate.toISOString().split("T")[0];
+
+        emptyList = [];
+        dateFill = new dateObject(itemDate, emptyList);
+
+        weekArray.push(dateFill);
+      }
+
+      for (const key in result) {
+        currentPass =
+          result[key]
+            .passType; /*iterate through pass type arrays to find the one that matches selected pass */
+        if (currentPass == pass) {
+          currentPass = result[key].availabilities;
+          for (const date in currentPass) {
+              if(date<28){
+                
+              /* this function drives the weekly calendar on the right third. */
+              weekPark = currentPass[date].facilityId;
+              weekAvailable = currentPass[date].slots[0].available;
+              weekReason = currentPass[date].slots[0].unavailableReason;
+              weekAvail = new parkObject(weekPark, weekAvailable, weekReason);
+              for (element in weekArray) {
+                if (weekArray[element].date == currentPass[date].date) {
+                  weekPush = weekArray[element].slot;
+                  weekPush.push(weekAvail);
+                }
+              }
+            }
+          }
+          displayWeek(weekArray);
+          console.log(weekArray)
+          }
+          
+        }
+      
+    });
+  }
+
 
 function getResortData(url, pass, park, parkDate) {
   fetch(url) /* grab array from disney site */
@@ -148,25 +196,14 @@ function getResortData(url, pass, park, parkDate) {
                     cardNotification(matchObject, pass);
                   }
               }
-            } else if (date < 28) {
-              /* this function drives the weekly calendar on the right third. */
-              weekPark = currentPass[date].facilityId;
-              weekAvailable = currentPass[date].slots[0].available;
-              weekReason = currentPass[date].slots[0].unavailableReason;
-              weekAvail = new parkObject(weekPark, weekAvailable, weekReason);
-              for (element in weekArray) {
-                if (weekArray[element].date == currentPass[date].date) {
-                  weekPush = weekArray[element].slot;
-                  weekPush.push(weekAvail);
-                }
-              }
-            }
           }
           displayWeek(weekArray);
           console.log(weekArray)
         }
-      }
-    });
+      
+    }
+  }
+  });
 }
 
 /* function to display weekly data on the right third*/
@@ -248,7 +285,7 @@ function weekCalendar() {
   }
   parkDate = document.querySelector("#date").value;
 
-  getResortData(weekUrl, weekPass, weekPark, weekDate);
+  getWeekData(weekUrl, weekPass);
 }
 /* this function creates the middle third card with notification data */
 function cardNotification(notificationObject, pass) {
@@ -257,7 +294,7 @@ function cardNotification(notificationObject, pass) {
   let textDate = displayDate(notifDate);
   notifAvail = notificationObject.slots[0].available;
   reason = notificationObject.slots[0].unavailableReason;
-  var parkText = "";
+  
   var passText = "";
   var reasonText = "";
 
