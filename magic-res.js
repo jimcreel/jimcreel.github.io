@@ -241,8 +241,10 @@ function displayWeek(weekArray) {
           textReason = "AVAILABLE";
           break;
       }
+      newLine = "\n"
       cardText = document.getElementById(weekText).innerHTML
-      newText = `${cardText} \n ${displayPark} - ${textReason}`
+      addText = `${displayPark} - ${textReason}`      
+      newText = cardText + newLine + addText
       console.log(newText)
       document.getElementById(weekText).innerHTML = newText
     }

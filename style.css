@@ -3,6 +3,11 @@
     visibility: hidden;
 }
 
+
+#weekCalendar{
+    margin-left: 60px;
+    margin-right:
+}
 body {
     background: url(/img/DisneyCastle.jpg);
     background-size: cover;
@@ -24,8 +29,8 @@ body {
 }
 
 .week {
-    min-width: 150px;
-    max-width: 200px;
+    min-width: 100px;
+    max-width: 300px;
 }
 
 #date {
@@ -40,11 +45,10 @@ body {
 .form-select, .form-select-m {
     width: 50%;
     min-width: 150px;
+    
 }
 
-#card {
-    border: 1px solid gray;
-}
+
 
 img {
     width: 100%;
@@ -52,6 +56,13 @@ img {
     max-height: 150px;
     border-radius: 3px;
 }
+ p{
+    background-color: rgba(255,255,255,.3);
+    border: 1px solid darkgray;
+    border-radius: 4px;
+    min-width: 125px;
+    min-height: 100px;
+ }
 
 @media (max-width: 500px){
     h1{
@@ -61,29 +72,34 @@ img {
     }
     h2{
       font-size: 20px;
-      margin: 20px 0 30px 0;
+      
     }
 
     h5{
         font-size: 15px;
-        width: 80%;
+        
     }
     div{
-      margin: 20px 12px 0 12px;
+      margin: auto;
+      flex-direction: column;
+      min-width: 200px;
       
-      min-width: 150px
     }
     p{
       font-size: 13px;
       line-height: 24px;
-      width: 75%;
+      width: auto;
+      min-width: 125px;
+      min-height: 100px;
+      white-space: pre;
     }
     small{
       font-size: 16px;
     }
     #week, #card, #card-body, #card-title{
         display: block;
-        width: 80%;
-        border: 1px solid lightgray;
+        
+       
+        
     }
 }
