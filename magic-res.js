@@ -19,6 +19,18 @@ $(document).ready(function () {
   date_input.datepicker(options);
 });
 
+function clearAvail() {
+  var childDivs = document.getElementById('card-display').getElementsByTagName('div')
+  for (i=0; i< childDivs.length; i++)
+  {
+    currentDiv = childDivs[i]
+    const divStatus = currentDiv.classList.contains('hidden')
+    if (!divStatus){
+      currentDiv.classList.toggle('hidden')
+    }
+    }
+  }
+
 /* changes date to mm/dd/yyyy */
 function displayDate(date){
   strDay = date.slice(5,7)
@@ -29,10 +41,7 @@ function displayDate(date){
 }
 /*hide and reveal contextual menus depending on resort*/
 function testResort(val) {
-  const cardStatus = document.getElementById("cardStatus").classList.contains("hidden")
-  if (!cardStatus) {
-    document.getElementById("cardStatus").classList.toggle("hidden")
-  }
+  clearAvail()
   if (val == "DLR") {
     document.getElementById("DLRdrops").classList.remove("hidden");
     document.getElementById("WDWdrops").classList.add("hidden");
@@ -47,6 +56,7 @@ function testResort(val) {
 
 /* hide and remove contextual menus depending on resort */
 function weekResortCheck(val) {
+  
   const weekStatus = document.getElementById("weekCalendar").classList.contains("hidden")
   if (!weekStatus) {
     document.getElementById("weekCalendar").classList.toggle("hidden");
@@ -146,7 +156,7 @@ function getWeekData(url, pass){
             }
           }
           displayWeek(weekArray);
-          console.log(weekArray)
+          
           }
           
         }
@@ -185,7 +195,7 @@ function getResortData(url, pass, park, parkDate) {
                 case "ANY" /* will return all available parks for the day at selected resort, but only displays last available park in card*/:
                   if (currentPass[date].date == parkDate) {
                     const matchObject = currentPass[date];
-                    cardNotification(matchObject, pass);
+                    cardNotification(matchObject);
                   }
                 default: /*returns availability for selected park only*/
                   if (
@@ -198,7 +208,7 @@ function getResortData(url, pass, park, parkDate) {
               }
           }
           displayWeek(weekArray);
-          console.log(weekArray)
+          
         }
       
     }
@@ -212,13 +222,14 @@ function displayWeek(weekArray) {
   for (element in weekArray) {
     
     var weekDate = displayDate(weekArray[element].date);
-    var weekDay = new Date(weekArray[element].date).toLocaleDateString("en-US", { weekday: "long"});
+    var day = weekArray[element].date
+    var weekDay = new Date(`${day}T00:00`).toLocaleDateString("en-US", { weekday: "long"});
     
     var formatDate = `${weekDay} ${weekDate}`
     
     var weekCard = `week${element}Title`
     var weekText = `week${element}Text`
-    console.log(weekText)
+    
     document.getElementById(weekCard).innerHTML = `${formatDate}`
 
     parkArray = weekArray[element].slot;
@@ -226,8 +237,8 @@ function displayWeek(weekArray) {
       var displayPark = parkArray[iterPark].park;
       var displayAvailable = parkArray[iterPark].available;
       var displayReason = parkArray[iterPark].reason;
-      displayPark = switchParkName(displayPark);
-      console.log(displayReason);
+      ;
+      
       switch (displayReason) {
         case "BLOCKED":
           textReason = "BLOCKED OUT";
@@ -241,12 +252,20 @@ function displayWeek(weekArray) {
           textReason = "AVAILABLE";
           break;
       }
-      newLine = "\n"
-      cardText = document.getElementById(weekText).innerHTML
-      addText = `${displayPark} - ${textReason}`      
-      newText = cardText + newLine + addText
-      console.log(newText)
-      document.getElementById(weekText).innerHTML = newText
+      dispResort = document.getElementById("weekSelectResort").value
+      const img = document.createElement('img')
+      img.src = `/img/${displayPark}.jpeg`
+      img.className = `park-icon`
+      addReason = document.createElement('p')
+      addReason.innerHTML=textReason
+      const newDiv = document.createElement('div')
+      newDiv.classList = "avail-icons"
+      currentDivId=`${weekText}${iterPark}`
+      newDiv.id = `${weekText}${iterPark}`
+      document.getElementById(weekText).appendChild(newDiv)
+      document.getElementById(currentDivId).appendChild(img)
+      document.getElementById(currentDivId).appendChild(addReason)
+      
     }
   }
 }
@@ -290,74 +309,70 @@ function weekCalendar() {
   getWeekData(weekUrl, weekPass);
 }
 /* this function creates the middle third card with notification data */
-function cardNotification(notificationObject, pass) {
+function cardNotification(notificationObject) {
+  const notifColumn = document.getElementById('card-display')
+  notifColumn.innerHTML = ""
   let notifPark = notificationObject.facilityId;
-  let notifDate = notificationObject.date;
-  let textDate = displayDate(notifDate);
   notifAvail = notificationObject.slots[0].available;
   reason = notificationObject.slots[0].unavailableReason;
-  
-  var passText = "";
   var reasonText = "";
-
-  notifPark = switchParkName(notifPark);
-  switch (pass) {
-    case "inspire-key-pass":
-      passText = "Inspire keys";
-      break;
-    case "imagine-key-pass":
-      passText = "Imagine keys";
-      break;
-    case "believe-key-pass":
-      passText = "Believe keys";
-      break;
-    case "enchant-key-pass":
-      passText = "Enchant keys";
-      break;
-    case "disney-incredi-pass":
-      passText = "Incredi-pass";
-      break;
-    case "disney-sorcerer-pass":
-      passText = "Sorcerer pass";
-      break;
-    case "disney-pirate-pass":
-      passText = "Pirate pass";
-      break;
-    case "disney-pixie-dust-pass":
-      passText = "Pixie Dust pass";
-      break;
-  }
-
   switch (reason) {
-    case "BLOCKED":
-      reasonText = "you are blocked out";
-      titleText = "Date Blocked Out";
-      break;
-    case "NO_INV":
-      reasonText = "reservations are sold out";
-      titleText = "Sorry, we're full!";
-      break;
-    case "EXCEED_SOFT_LIMIT":
-      reasonText = "the park is at capacity";
-      titleText = "Sorry, we're full!";
-      break;
+  case "BLOCKED":
+    reasonText = "- Blocked Out";
+    titleText = "Date Blocked Out";
+    break;
+  case "NO_INV":
+    reasonText = "- At Capacity";
+    titleText = "Sorry, we're full!";
+    break;
+  case "EXCEED_SOFT_LIMIT":
+    reasonText = "- At Capacity";
+    titleText = "Sorry, we're full!";
+    break;
+  case "NONE":
+    reasonText = "- AVAILABLE";
+      
   }
-
+  
   if (notifAvail == true) {
-    notificationObject.facilityId;
-    document.getElementById(
-      "card-text"
-    ).innerHTML = `Reservations are available for ${notifPark} on ${textDate} for ${passText}`;
+    const img = document.createElement('img')
+    img.src = `/img/${notifPark}.jpeg`
+    img.className = `park-icon`
+    newReason = document.createElement('p')
+    newReason.innerHTML=reasonText
+    console.log(reasonText)
+    const newDiv = document.createElement('div')
+    newDiv.classList = "avail-icons"
+    const currentDivId = 'card-display'
+    newDiv.id = `${currentDivId}1`
+    const newDivId = newDiv.id
+    document.getElementById('card-display').appendChild(newDiv)
+
+    document.getElementById(newDivId).appendChild(img)
+    document.getElementById(newDivId).appendChild(newReason)
     document.getElementById("card-title").innerHTML = "Come on Down!";
   } else {
-    reason = notificationObject.slots[0].unavailableReason;
-    document.getElementById(
-      "card-text"
-    ).innerHTML = `Reservations are not available for ${notifPark} on ${textDate} because ${reasonText}`;
+    const img = document.createElement('img')
+    img.src = `/img/${notifPark}.jpeg`
+    img.className = `park-icon`
+    newReason = document.createElement('p')
+    newReason.innerHTML=reasonText
+    console.log(reasonText)
+    const newDiv = document.createElement('div')
+    newDiv.classList = "avail-icons"
+    const currentDivId = 'card-display'
+    newDiv.id = `${currentDivId}1`
+    const newDivId = newDiv.id
+    document.getElementById('card-display').appendChild(newDiv)
+
+    document.getElementById(newDivId).appendChild(img)
+    document.getElementById(newDivId).appendChild(newReason)
     document.getElementById("card-title").innerHTML = titleText;
-    document.getElementById("card-button").innerHTML = `Sorry`;
+    ;
   }
 }
+
+
 
 /* function to take park codes and match them with the appropriate string*/
 function switchParkName(parkName) {
