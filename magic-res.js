@@ -223,10 +223,10 @@ function displayWeek(weekArray) {
 
 		var weekText = `week${element}Text`;
 		var weekDiv = document.createElement("div");
-		weekDiv.classList = "col-xs-4 week";
+		weekDiv.classList = "week";
 		weekDiv.id = `weekContainer${element}`;
 		var dayDiv = document.createElement("h5");
-		dayDiv.classList = "week";
+		dayDiv.classList = "date";
 		dayDiv.id = `week${element}Title`;
 		dayDiv.innerHTML = formatDate;
 		var dayDivText = document.createElement("div");
