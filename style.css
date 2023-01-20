@@ -11,10 +11,10 @@
     justify-content: center;
     border: 1px solid darkgray;
     border-radius: 7px;
-    
+    max-width: 175px;
     align-content: center;
     height: 35px;
-    width: 200px;
+    
 } 
 p {
     margin-bottom: 0px !important;
@@ -27,7 +27,7 @@ p {
 .park-icon{
     max-width: 30px;
     max-height: 30px;
-    display: inline;
+    
     
     
 }
@@ -39,8 +39,7 @@ p {
     
     
     align-content: center;
-    height: 35px;
-    width: 200px;
+    
     margin-bottom: 4px !important;
     margin-top: 4px !important;
 }
@@ -106,6 +105,11 @@ img {
 
 
 @media (max-width: 500px){
+    #weekDates{
+       max-width: 225px;
+       margin: auto;
+    }
+    
     h1{
       font-size: 50px;
       margin-top: 20px;

@@ -62,11 +62,6 @@ function weekResortCheck(val) {
     document.getElementById("weekCalendar").classList.toggle("hidden");
   }
   
-  let listLength = 7;
-  for (let x = 0; x < listLength; x++) {
-    delTxt = `week${x}Text`;
-    document.getElementById(delTxt).innerHTML=""
-  }
   if (val == "DLR") {
     document.getElementById("weekDLR").classList.remove("hidden");
     document.getElementById("weekWDW").classList.add("hidden");
@@ -121,7 +116,7 @@ function getWeekData(url, pass){
     .then((response) => response.json())
     .then((result) => {
       var weekArray = [];
-      listLength = 7;
+      listLength = 28;
       for (let i = 0; i < listLength; i++) {
         itemDate = new Date();
         itemDate.setDate(itemDate.getDate() + i);
@@ -140,7 +135,7 @@ function getWeekData(url, pass){
         if (currentPass == pass) {
           currentPass = result[key].availabilities;
           for (const date in currentPass) {
-              if(date<28){
+              if(date<130){
                 
               /* this function drives the weekly calendar on the right third. */
               weekPark = currentPass[date].facilityId;
@@ -170,7 +165,7 @@ function getResortData(url, pass, park, parkDate) {
     .then((response) => response.json())
     .then((result) => {
       var weekArray = [];
-      listLength = 7;
+      listLength = 28;
       for (let i = 0; i < listLength; i++) {
         itemDate = new Date();
         itemDate.setDate(itemDate.getDate() + i);
@@ -218,7 +213,7 @@ function getResortData(url, pass, park, parkDate) {
 
 /* function to display weekly data on the right third*/
 function displayWeek(weekArray) {
-  
+  document.querySelector("#weekDates").innerHTML=""
   for (element in weekArray) {
     
     var weekDate = displayDate(weekArray[element].date);
@@ -227,15 +222,30 @@ function displayWeek(weekArray) {
     
     var formatDate = `${weekDay} ${weekDate}`
     
-    var weekCard = `week${element}Title`
-    var weekText = `week${element}Text`
     
-    document.getElementById(weekCard).innerHTML = `${formatDate}`
+    var weekText = `week${element}Text`
+    var weekDiv = document.createElement('div')
+    weekDiv.classList = "col-xs-4 week"
+    weekDiv.id = `weekContainer${element}`
+    var dayDiv = document.createElement('h5')
+    dayDiv.classList = "week"
+    dayDiv.id = `week${element}Title`
+    dayDiv.innerHTML = formatDate
+    var dayDivText = document.createElement('div')
+      
+      dayDivText.id = `week${element}Text`
+      dayDivText.classList = 'date'
 
+    document.getElementById("weekDates").appendChild(weekDiv)
+    document.getElementById(`weekContainer${element}`).appendChild(dayDiv)
+    document.getElementById(`weekContainer${element}`).appendChild(dayDivText)
+    
+
+   
+    
     parkArray = weekArray[element].slot;
     for (iterPark in parkArray) {
       var displayPark = parkArray[iterPark].park;
-      var displayAvailable = parkArray[iterPark].available;
       var displayReason = parkArray[iterPark].reason;
       ;
       
@@ -252,17 +262,20 @@ function displayWeek(weekArray) {
           textReason = "AVAILABLE";
           break;
       }
+      var dayDivText = document.createElement('div')
+      dayDivText.id = `week${element}Text${iterPark}`
+      dayDivText.classList = 'date'
+      document.getElementById(`weekContainer${element}`).appendChild(dayDivText)
       dispResort = document.getElementById("weekSelectResort").value
       const img = document.createElement('img')
       img.src = `/img/${displayPark}.jpeg`
       img.className = `park-icon`
       addReason = document.createElement('p')
       addReason.innerHTML=textReason
-      const newDiv = document.createElement('div')
-      newDiv.classList = "avail-icons"
-      currentDivId=`${weekText}${iterPark}`
-      newDiv.id = `${weekText}${iterPark}`
-      document.getElementById(weekText).appendChild(newDiv)
+      
+      currentDivId = `week${element}Text${iterPark}`
+      console.log(currentDivId)
+      
       document.getElementById(currentDivId).appendChild(img)
       document.getElementById(currentDivId).appendChild(addReason)
       
@@ -283,11 +296,7 @@ function parkObject(weekPark, weekAvailable, weekReason) {
 
 
 function weekCalendar() {
-  let listLength = 7;
-  for (let x = 0; x < listLength; x++) {
-    delTxt = `week${x}Text`;
-    document.getElementById(delTxt).innerHTML=""
-  }
+  
   weekResort = document.querySelector("#weekSelectResort").value;
   document.getElementById("weekCalendar").classList.toggle("hidden");
   
@@ -315,6 +324,7 @@ function cardNotification(notificationObject) {
   let notifPark = notificationObject.facilityId;
   notifAvail = notificationObject.slots[0].available;
   reason = notificationObject.slots[0].unavailableReason;
+  notifDate = notificationObject.date
   var reasonText = "";
   switch (reason) {
   case "BLOCKED":
@@ -340,14 +350,19 @@ function cardNotification(notificationObject) {
     img.className = `park-icon`
     newReason = document.createElement('p')
     newReason.innerHTML=reasonText
+    
+    
     console.log(reasonText)
     const newDiv = document.createElement('div')
-    newDiv.classList = "avail-icons"
+   newDiv.classList = 'avail-icons'
     const currentDivId = 'card-display'
     newDiv.id = `${currentDivId}1`
     const newDivId = newDiv.id
     document.getElementById('card-display').appendChild(newDiv)
-
+    const dateDiv = document.createElement('div')
+    dateDiv.classList = "avail-icons"
+    dateDiv.innerHTML=notifDate
+    
     document.getElementById(newDivId).appendChild(img)
     document.getElementById(newDivId).appendChild(newReason)
     document.getElementById("card-title").innerHTML = "Come on Down!";
