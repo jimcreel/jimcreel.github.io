@@ -117,6 +117,7 @@ function userData(resort, pass, park, parkDate) {
 
 /* fetches and sorts data into arrays for processing */
 function getWeekData(url, pass) {
+	
 	fetch(url) /* grab array from disney site */
 		.then((response) => response.json())
 		.then((result) => {
@@ -304,9 +305,11 @@ function weekCalendar() {
 		weekUrl = wdwUrl;
 	}
 	parkDate = document.querySelector("#date").value;
-
-	getWeekData(weekUrl, weekPass);
+	if (weekUrl != null && weekPass != null){
+		getWeekData(weekUrl, weekPass);
+	}
 }
+
 /* this function creates the middle third card with notification data */
 function cardNotification(notificationObject) {
 	const notifColumn = document.getElementById("card-display");
