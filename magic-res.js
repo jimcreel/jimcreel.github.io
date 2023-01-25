@@ -270,7 +270,7 @@ function displayWeek(weekArray) {
 			addReason.innerHTML = textReason;
 
 			currentDivId = `week${element}Text${iterPark}`;
-			console.log(currentDivId);
+			
 
 			document.getElementById(currentDivId).appendChild(img);
 			document.getElementById(currentDivId).appendChild(addReason);
@@ -343,7 +343,7 @@ function cardNotification(notificationObject) {
 		newReason = document.createElement("p");
 		newReason.innerHTML = reasonText;
 
-		console.log(reasonText);
+		
 		const newDiv = document.createElement("div");
 		newDiv.classList = "avail-icons";
 		const currentDivId = "card-display";
@@ -363,7 +363,7 @@ function cardNotification(notificationObject) {
 		img.className = `park-icon`;
 		newReason = document.createElement("p");
 		newReason.innerHTML = reasonText;
-		console.log(reasonText);
+		
 		const newDiv = document.createElement("div");
 		newDiv.classList = "avail-icons";
 		const currentDivId = "card-display";
