@@ -1,6 +1,6 @@
-let dlrUrl = "https://jctnqgdxx6.us-west-2.awsapprunner.com/DLR";
+let dlrUrl = "https://qvgkpkmptt.us-west-2.awsapprunner.com/DLR";
 
-let wdwUrl = "https://jctnqgdxx6.us-west-2.awsapprunner.com/WDW";
+let wdwUrl = "https://qvgkpkmptt.us-west-2.awsapprunner.com/WDW";
 
 $(document).ready(function () {
 	var date_input = $('input[name="date"]'); //our date input has the name "date"
