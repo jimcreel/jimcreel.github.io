@@ -212,12 +212,21 @@ function getResortData(url, pass, park, parkDate) {
 
 /* function to display weekly data on the right third*/
 function displayWeek(weekArray) {
-	document.querySelector("#weekDates").innerHTML = "";
+	var weekDisplay = document.getElementById('weekCalendar').children;
+	for (let i = 0; i < weekDisplay.length; i++){
+		var tableChild = weekDisplay[i];
+		tableChild.innerHTML = "";
+}
+	let currentWeek = 0;
 	for (element in weekArray) {
+		if (element == 0 || element%7==0){
+			currentWeek +=1;
+		}
+
 		var weekDate = displayDate(weekArray[element].date);
 		var day = weekArray[element].date;
 		var weekDay = new Date(`${day}T00:00`).toLocaleDateString("en-US", {
-			weekday: "long",
+			weekday: "short",
 		});
 
 		var formatDate = `${weekDay} ${weekDate}`;
@@ -235,7 +244,7 @@ function displayWeek(weekArray) {
 		dayDivText.id = `week${element}Text`;
 		dayDivText.classList = "date";
 
-		document.getElementById("weekDates").appendChild(weekDiv);
+		document.getElementById(`weekDates${currentWeek}`).appendChild(weekDiv);
 		document.getElementById(`weekContainer${element}`).appendChild(dayDiv);
 		document.getElementById(`weekContainer${element}`).appendChild(dayDivText);
 

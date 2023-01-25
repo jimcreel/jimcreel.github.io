@@ -35,8 +35,8 @@ body{
 }
 
 .week {
-    min-width: 200px;
-    max-width: 225px;
+    
+    
     border: 1px solid black;
     padding: 10px;
     border-radius: 5px;
@@ -83,19 +83,12 @@ body{
     
 } 
 #weekCalendar{
-    margin-left: 60px;
-    margin-right: 60px;
+    margin: 10px 60px 10px 60px;
 }
 
 
-#calendarSelector {
-    max-width: 250px;
-}
 
-#displayWeek {
-    
-    text-align: right;
-}
+
 
 .date{
     display: flex;
@@ -108,7 +101,7 @@ body{
     margin-bottom: 4px !important;
     margin-top: 4px !important;
 }
-@media (max-width: 500px){
+@media (max-width: 1250px){
     #weekDates{
        max-width: 225px;
        margin: auto;
@@ -130,7 +123,7 @@ body{
     }
     div{
       margin: auto;
-      flex-direction: column;
+      
       min-width: 200px;
       
     }
