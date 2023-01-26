@@ -219,6 +219,7 @@ function displayWeek(weekArray) {
 }
 	let currentWeek = 0;
 	for (element in weekArray) {
+		console.log(element);
 		if (element == 0 || element%7==0){
 			currentWeek +=1;
 		}

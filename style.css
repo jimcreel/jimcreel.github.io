@@ -42,7 +42,7 @@ body{
     border-radius: 5px;
     margin: 5px 5px 5px 5px;
     display: inline-block;
-    width: 13.6%;
+    width: max-content;;
     height: 25%;
 }
 
@@ -84,6 +84,11 @@ body{
 } 
 #weekCalendar{
     margin: 10px 60px 10px 60px;
+    
+}
+.weekDates {
+    width: max-content;
+    overflow: auto;
 }
 
 
