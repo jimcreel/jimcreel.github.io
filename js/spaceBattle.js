@@ -124,7 +124,7 @@ const game = {
 		console.table(heroShip);
 	},
 };
-const enemies = [];
+let enemies = [];
 let heroShip = new HeroShip();
 let totalShips = 0;
 let currentEnemy = 0;
@@ -213,7 +213,6 @@ function getRandom(min, max) {
 function gameStart() {
 	// fills the enemy ship array with new AlienShips with random stats
 	document.getElementById('alien-fleet').innerHTML = ''
-	
 	const randomEnemies = getRandom(6, 12);
 	for (let i = 0; i < randomEnemies; i++) {
 		let alien = new AlienShip(`alien ship ${i}`, i);
@@ -283,6 +282,7 @@ function gameStart() {
 function checkEnd() {
 	// tracks win/loss conditions
 	let shipsRemaining = game.alienShipsRemaining(enemies);
+	console.log(shipsRemaining);
 	if (shipsRemaining === 0) {
 		alert('you win!')
 		game.gameOver = true;
@@ -306,6 +306,7 @@ function youLose(reason) {
 			heroShip.missiles = 3
 			document.querySelector('aside').innerHTML = `<p id='hudName'>USS Schwarzenegger</p> <br> <p id='hudHull'>Hull: ${heroShip.hull}</p> <br> <p id='hudMissiles'>Missiles: ${heroShip.missiles}</p><br><p>Firepower: ${heroShip.firepower}`
 			document.getElementById('player-ship').src = '/img/player-ship.png'
+			enemies = []
 			gameStart();}
 		)
 		let alienFleet = document.getElementById('alien-fleet')
