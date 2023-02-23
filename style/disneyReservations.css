@@ -1,7 +1,9 @@
 .hidden {
     display: none !important;
 }
-
+.navbar {
+    padding-left: 1rem;
+}
 img {
     width: 100%;
     height: auto;
