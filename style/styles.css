@@ -7,7 +7,7 @@ body {
 }
 
   .projects {
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
     width: 80vw;
     
@@ -108,4 +108,8 @@ a {
 
 article {
     max-width: 500px;
+}
+
+#project-container {
+    min-width: 80vw;
 }
