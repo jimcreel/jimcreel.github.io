@@ -33,9 +33,10 @@ class HeroShip extends AlienShip {
 	repairShields = function () {
 		if (this.hull < 20 && this.hull != 0) {
 			let hullRepair = getRandom(0, 2);
-			let hullRepairPercentage = hullRepair / 0.2;
+			let hullRepairPercentage = hullRepair * 0.05;
 			
-			this.hull += this.hull+hullRepair*this.hull;
+			this.hull += (hullRepairPercentage*this.hull);
+			
 		}
 	};
 	
@@ -132,7 +133,7 @@ let enemyAttack = '';
 // clear the battle log when the game is started
 const startButton = document.querySelector('aside button');
 startButton.addEventListener('click', () => {
-	document.querySelector('aside').innerHTML = '<h1> Round One</h1>'
+	document.querySelector('aside').innerHTML = `<p id='hudName'>USS Schwarzenegger</p> <br> <p id='hudHull'>Hull: ${heroShip.hull}</p> <br> <p id='hudMissiles'>Missiles: ${heroShip.missiles}</p><br><p>Firepower: ${heroShip.firepower}`
 	
 	gameStart();
 })
@@ -154,6 +155,7 @@ function gameLoop() {
 		if (heroAttackResult) {
 			game.calculateDamage(heroShip, currentEnemy, heroShip.firepower);
 			updateHealthBar(currentEnemy);
+			checkEnd();
 		} else {
 			
 			for (i=0; i< enemies.length; i++){
@@ -190,6 +192,7 @@ function gameLoop() {
 						enemies[attackIndex].firepower
 					);
 					updateHeroHealthBar();
+					checkEnd();
 				}
 			}
 			
@@ -209,6 +212,8 @@ function getRandom(min, max) {
 
 function gameStart() {
 	// fills the enemy ship array with new AlienShips with random stats
+	document.getElementById('alien-fleet').innerHTML = ''
+	
 	const randomEnemies = getRandom(6, 12);
 	for (let i = 0; i < randomEnemies; i++) {
 		let alien = new AlienShip(`alien ship ${i}`, i);
@@ -258,9 +263,9 @@ function gameStart() {
 				barrelFlare.style.display = 'block'
 				heroShip.firepower = 10;
 				currentEnemy = enemies[alien.id]
-				
+				heroShip.missiles -= 1;
 				setTimeout (() => barrelFlare.style.display = 'none', 1000)
-				return false;
+				gameLoop();
 			}else{
 				alert('no missiles left!')
 				return false;
@@ -279,7 +284,7 @@ function checkEnd() {
 	// tracks win/loss conditions
 	let shipsRemaining = game.alienShipsRemaining(enemies);
 	if (shipsRemaining === 0) {
-		
+		alert('you win!')
 		game.gameOver = true;
 		return true;
 	} else if (heroShip.hull <= 0) {
@@ -293,9 +298,21 @@ function checkEnd() {
 function youLose(reason) {
 	
 	if (reason === "destroyed") {
-		
+		alert('your ship has been destroyed')
+		let restartButton = document.createElement('button');
+		restartButton.innerHTML = 'Restart Game'
+		restartButton.addEventListener('click', () => {
+			heroShip.hull = 20
+			heroShip.missiles = 3
+			document.querySelector('aside').innerHTML = `<p id='hudName'>USS Schwarzenegger</p> <br> <p id='hudHull'>Hull: ${heroShip.hull}</p> <br> <p id='hudMissiles'>Missiles: ${heroShip.missiles}</p><br><p>Firepower: ${heroShip.firepower}`
+			document.getElementById('player-ship').src = '/img/player-ship.png'
+			gameStart();}
+		)
+		let alienFleet = document.getElementById('alien-fleet')
+		alienFleet.innerHTML='';
+		alienFleet.append(restartButton);
 	} else {
-		
+		alert('you lose')
 	}
 }
 
@@ -313,6 +330,7 @@ function updateHeroHealthBar(){
 
 	 
     healthBar.style.width = `${(heroShip.hull/heroShip.maxHull)*100}%`
+	document.querySelector('aside').innerHTML = `<p id='hudName'>USS Schwarzenegger</p> <br> <p id='hudHull'>Hull: ${heroShip.hull}</p> <br> <p id='hudMissiles'>Missiles: ${heroShip.missiles}</p><br><p>Firepower: ${heroShip.firepower}`
 
     
 }
