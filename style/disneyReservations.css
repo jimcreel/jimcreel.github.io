@@ -23,7 +23,7 @@ p {
 
 body{
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background: url(/img/DisneyCastle.jpg);
+    background: url(/img/DisneyCastle.jpg) no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -155,7 +155,9 @@ body{
         max-width: 225px;
         max-height: 190px;;
     }
+
     .date{
         max-height: 32px;
 
+    }
     }
