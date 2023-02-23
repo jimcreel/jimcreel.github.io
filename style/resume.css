@@ -1,3 +1,4 @@
+
 .resume-header {
     background-color: #434E5E;
     color: rgba(255,255,255,0.9);
@@ -80,3 +81,6 @@ hr {
     font-size: 1.25em;
 }
 
+p {
+    font-size: 1.2rem;
+}
