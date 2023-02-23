@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<link
+		
+			rel="stylesheet"
+			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+			crossorigin="anonymous"
+		/>
+		<script
+			type="text/javascript"
+			src="https://code.jquery.com/jquery-1.11.3.min.js"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+			crossorigin="anonymous"
+		></script>
+	
+    
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"
+		/>
+		
+    <link rel="stylesheet" href="/style/disneyReservations.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    
+    
+
+    </style>
+  
+		<title>Jim Creel - Disney Reservation Checker</title>
+	</head>
+	<body>
+		
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+			  <a class="navbar-brand" href="#">Jim Creel</a>
+			  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				  <li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="#">Home</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="/index.html">Disney Reservation Checker</a>
+				  <li class="nav-item">
+					<a class="nav-link" href="/aboutme.html">About Me</a>
+				  </li>
+				  
+				  
+				</ul>
+				
+				</form>
+			  </div>
+			</div>
+		  </nav>
+		  <img src="/img/Disneyland_sign_banner.jpg" >
+		
+			<div class="container">
+        <div class="row row-cols-3">
+				<div class="col-xs-4">
+
+						<h3>Date Checker</h3>
+							<div id="Resort">
+								<label for="selectResort">Desired Disney Resort</label
+								><select
+									class="form-select form-select-sm"
+									id="selectResort"
+									name="selectResort"
+									onchange="testResort(this.value)"
+								>
+									<option selected>Please Select Your Resort</option>
+									<option value="DLR">Disneyland Resort</option>
+									<option value="WDW">Walt Disney World</option>
+								</select>
+							</div>
+
+							<div id="DLRdrops" class="DLR hidden">
+								<label for="selectDLRkey">Your Key Level</label
+								><select
+									id="selectDLRkey"
+									class="form-select form-select-sm"
+									name="selectDLRkey"
+								>
+									<option selected>Please Select Your Pass</option>
+									<option value="inspire-key-pass">Inspire Key</option>
+									<option value="believe-key-pass">Believe Key</option>
+									<option value="enchant-key-pass">Enchant Key</option>
+									<option value="imagine-key-pass">Imagine Key</option>
+									<option value="dream-key-pass">Dream Key</option>
+								</select>
+								<label for="selectDLRpark">Desired Park</label
+								><select
+									class="form-select form-select-sm"
+									id="selectDLRpark"
+									name="selectDLRpark"
+								>
+									<option selected>Please Select Your Park</option>
+									<option value="DLR_DP">Disneyland</option>
+									<option value="DLR_CA">California Adventure</option>
+                  <option value="ANY">Any Park</option>
+								</select>
+							</div>
+
+							<div id="WDWdrops" class="WDW hidden">
+								<label for="selectWDWpass">Your Pass Level</label
+								><select
+									id="selectWDWpass"
+									name="selectWDWpass"
+                  class="form-select form-select-sm"
+								>
+									<option selected>Please Select your Pass</option>
+									<option value="disney-incredi-pass">Incredi-Pass</option>
+									<option value="disney-sorcerer-pass">Sorcerer Pass</option>
+									<option value="disney-pirate-pass">Pirate Pass</option>
+									<option value="disney-pixie-dust-pass">Pixie Dust Pass</option>
+								</select>
+								<label for="selectWDWpark">Desired Park</label
+								><select
+									class="form-select form-select-sm"
+									id="selectWDWpark"
+									name="selectWDWPark"
+								>
+									<option selected>Please Select Your Park</option>
+									<option value="WDW_MK">Magic Kingdom</option>
+									<option value="WDW_EP">EPCOT</option>
+									<option value="WDW_HS">Hollywood Studios</option>
+									<option value="WDW_AK">Animal Kingdom</option>
+                  <option value="ANY">Any Park</option>
+								</select>
+							</div>
+							<div  class="datepicker form-text-sm" id="calendarForm">
+								<!-- Date input -->
+								<label  for="date">Select your Date</label>
+								<input
+									
+									id="date"
+									name="date"
+									placeholder="MM-DD-YYYY"
+									type="text"
+									readonly="true"
+								/>
+							</div>
+							<div  id="selectDate">
+								<!-- Submit button -->
+								<button
+									class="btn btn-primary"
+									name="submit"
+									type="submit"
+									id="subButton"
+									onclick="submitForm()"
+								>
+									Submit
+								</button>
+							</div>
+            </div>
+            
+
+				<div class="col-xs-4" id="cardStatus">
+                
+                    <h3 id="card-title">Reservation Availability</h3>
+                    <div id="card-display" >
+
+						
+					</div>
+					
+                    
+                  
+                
+              </div>
+                
+
+							<div class="col-xs-4 calendarSelector" id = 'thirdColumn'>
+								<h3>Monthly Forecast</h3>
+								
+								<div id="weekResort">
+									<label for="weekResort">Disney Resort</label
+									><select
+										class="form-select form-select-sm"
+										id="weekSelectResort"
+										name="weekSelectResort"
+										onchange="weekResortCheck(this.value)"
+									>
+										<option selected>Please Select Your Resort</option>
+										<option value="DLR">Disneyland Resort</option>
+										<option value="WDW">Walt Disney World</option>
+									</select>
+								</div>
+	
+								<div id="weekDLR" class="DLR hidden">
+									<label for="selectDLRkey">Your Key Level</label
+									><select
+										id="weekSelectDLRkey"
+										class="form-select form-select-sm"
+										name="selectDLRkey"
+										
+									>
+										<option selected>Please Select Your Pass</option>
+										<option value="inspire-key-pass">Inspire Key</option>
+										<option value="believe-key-pass">Believe Key</option>
+										<option value="enchant-key-pass">Enchant Key</option>
+										<option value="imagine-key-pass">Imagine Key</option>
+										<option value="dream-key-pass">Dream Key</option>
+									</select>
+									</div>
+
+								<div id="weekWDW" class="WDW hidden">
+									<label for="selectWDWpass">Your Pass Level</label
+									><select
+										id="weekSelectWDWpass"
+										name="selectWDWpass"
+										class="form-select form-select-sm"
+									>
+										<option selected>Please Select your Pass</option>
+										<option value="disney-incredi-pass">Incredi-Pass</option>
+										<option value="disney-sorcerer-pass">Sorcerer Pass</option>
+										<option value="disney-pirate-pass">Pirate Pass</option>
+										<option value="disney-pixie-dust-pass">Pixie Dust Pass</option>
+									</select>
+								</div>	
+								
+								<div  id="setWeekly">
+									<!-- Submit button -->
+									<button
+										class="btn btn-primary"
+										name="weekSubmit"
+										type="submit"
+										id="weekButton"
+										onclick="weekCalendar()"
+										
+									>
+										Submit
+									</button>
+									
+								</div>
+					</div>
+				</div>
+			</div>
+			<div  id="weekCalendar">
+
+				<div id="weekDates1" class = "weekDates"></div>
+				<div id="weekDates2" class = "weekDates"></div>
+				<div id="weekDates3" class = "weekDates"></div>
+				<div id="weekDates4" class = "weekDates"></div>
+		</div>
+	</body>
+
+	<script src="/js/magic-res.js"></script>
+</html>
