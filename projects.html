@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 
     <!-- Site CSS -->
+    <link rel="stylesheet" href="/style/projects.css">
     <link rel="stylesheet" href="/style/styles.css">
     <title>Projects</title>
   </head>
@@ -42,13 +43,27 @@
               <div class = "pics col-lg-4 col-md-4 col-sm-2" id="box1">
                 <img class = 'static' src="/img/spaceBattleStatic.png" id="space-battle" href">
                 <a href="spaceBattle.html">Space Battle</a>
-                <p class="dates"> Space Battle is a simple point-and-click browser game. Click on the aliens to fire, but if you miss they fire back
-            </div>
+                <p class="dates"> Space Battle is a simple point-and-click browser game. Click on the aliens to fire, but if you miss, they fire back</p>
+                
+              </div>
             
             <div class = "pics col-lg-4 col-md-4 col-sm-2" id="box3">
-                <img src="/img/disneySite.png">
+                <img src="/img/disneySite.png" id="disneySite">
                 <a href="disneyReservations.html">Disney Reservation Checker</a>
-                <p class="dates">The Disney Reservation Checker is a full-stack site with a javascript front end and python back end. The site pulls publicly available reservation data from Disney websites and displays it for the user filtered by resort, park, date, and annual pass. This site features a custom API running on AWS to route the data to the user.</p>
+                <p class="dates">The Disney Reservation Checker is a full-stack site with a javascript front end and python back end. </p>
+                <div id="modal">
+                  <div id="modal-textbox">
+                    <h1>About the Reservation Checker</h1>
+                    <p>
+                      The reservation checker relies on an AWS-hosted custom API that redirects a javascript object from Disney's 
+                      API endpoint. The site pulls publicly available reservation data from Disney websites and displays it for the
+                      user filtered by resort, park, date, and annual pass. 
+                    </p>
+                    <div id="modal-footer">
+                      <button id="close" href="#" class="modal-buttons">Close</button>
+                    </div>
+                  </div>
+                </div>
             </div>
             <div class = "pics col-lg-4 col-md-4 col-sm-2" id="box3">
               <img src="/img/scraper.png">
