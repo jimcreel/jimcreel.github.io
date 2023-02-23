@@ -282,7 +282,7 @@ function gameStart() {
 function checkEnd() {
 	// tracks win/loss conditions
 	let shipsRemaining = game.alienShipsRemaining(enemies);
-	console.log(shipsRemaining);
+
 	if (shipsRemaining === 0) {
 		alert('you win!')
 		game.gameOver = true;
