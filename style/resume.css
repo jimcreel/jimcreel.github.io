@@ -12,8 +12,9 @@
 }
 
 .resume-wrapper {
-    margin: 0 auto;
-    max-width: 65vw;
+    margin-top: 5vh;
+    margin-left: 20vw;
+    max-width: 60vw;
 }
 
 .main-info {
