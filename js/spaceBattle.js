@@ -286,9 +286,11 @@ function checkEnd() {
 	if (shipsRemaining === 0) {
 		alert('you win!')
 		game.gameOver = true;
+		gameRestart();
 		return true;
 	} else if (heroShip.hull <= 0) {
 		youLose("destroyed");
+		gameRestart();
 		return true;
 	} else {
 		return false;
@@ -299,21 +301,10 @@ function youLose(reason) {
 	
 	if (reason === "destroyed") {
 		alert('your ship has been destroyed')
-		let restartButton = document.createElement('button');
-		restartButton.innerHTML = 'Restart Game'
-		restartButton.addEventListener('click', () => {
-			heroShip.hull = 20
-			heroShip.missiles = 3
-			document.querySelector('aside').innerHTML = `<p id='hudName'>USS Schwarzenegger</p> <br> <p id='hudHull'>Hull: ${heroShip.hull}</p> <br> <p id='hudMissiles'>Missiles: ${heroShip.missiles}</p><br><p>Firepower: ${heroShip.firepower}`
-			document.getElementById('player-ship').src = '/img/player-ship.png'
-			enemies = []
-			gameStart();}
-		)
-		let alienFleet = document.getElementById('alien-fleet')
-		alienFleet.innerHTML='';
-		alienFleet.append(restartButton);
+		gameRestart();
 	} else {
 		alert('you lose')
+		gameRestart();
 	}
 }
 
@@ -334,4 +325,20 @@ function updateHeroHealthBar(){
 	document.querySelector('aside').innerHTML = `<p id='hudName'>USS Schwarzenegger</p> <br> <p id='hudHull'>Hull: ${heroShip.hull}</p> <br> <p id='hudMissiles'>Missiles: ${heroShip.missiles}</p><br><p>Firepower: ${heroShip.firepower}`
 
     
+}
+
+function gameRestart(){
+	let restartButton = document.createElement('button');
+		restartButton.innerHTML = 'Restart Game'
+		restartButton.addEventListener('click', () => {
+			heroShip.hull = 20
+			heroShip.missiles = 3
+			document.querySelector('aside').innerHTML = `<p id='hudName'>USS Schwarzenegger</p> <br> <p id='hudHull'>Hull: ${heroShip.hull}</p> <br> <p id='hudMissiles'>Missiles: ${heroShip.missiles}</p><br><p>Firepower: ${heroShip.firepower}`
+			document.getElementById('player-ship').src = '/img/player-ship.png'
+			enemies = []
+			gameStart();}
+		)
+		let alienFleet = document.getElementById('alien-fleet')
+		alienFleet.innerHTML='';
+		alienFleet.append(restartButton);
 }
