@@ -27,7 +27,7 @@ class HeroShip extends AlienShip {
 	firepower = 5;
 	accuracy = 0.7;
 	hull = 20;
-	maxhull = 20;
+	maxHull = 20;
 	missiles = 3;
 	missleFirepower = 10;
 	repairShields = function () {
@@ -126,6 +126,7 @@ const game = {
 };
 let enemies = [];
 let heroShip = new HeroShip();
+console.table(heroShip)
 let totalShips = 0;
 let currentEnemy = 0;
 let enemyAttack = '';
@@ -318,10 +319,11 @@ function updateHealthBar(alien){
 }
 
 function updateHeroHealthBar(){
-	let healthBar = document.getElementById(`playerHealth`)
-
+	let playerHealthBar = document.getElementById(`playerHealth`)
+	console.log(heroShip.hull)
+	console.log(heroShip.maxHull)
 	 
-    healthBar.style.width = `${(heroShip.hull/heroShip.maxHull)*100}%`
+   playerHealthBar.style.width = `${(heroShip.hull / heroShip.maxHull)*100}%`
 	document.querySelector('aside').innerHTML = `<p id='hudName'>USS Schwarzenegger</p> <br> <p id='hudHull'>Hull: ${heroShip.hull}</p> <br> <p id='hudMissiles'>Missiles: ${heroShip.missiles}</p><br><p>Firepower: ${heroShip.firepower}`
 
     
