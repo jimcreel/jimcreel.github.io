@@ -34,3 +34,7 @@ n/a
 
 
 ## Unsolved Problems
+
+- image carousel chevrons are not active on Safari. They work perfectly on Chrome, so I'm not sure what the issue is. I'll switch out to a different font or an image to fix it.
+- space battle alerts and game text are very basic. I'd like to switch it up to an 8bit font and make the game over/you win text more cinematic. I'll probably add a middle ground div or a modal to present these
+- the disney site monthly calendar is not well-designed. I'm working on a monthly calendar that can be more flexible, but the sizing is giving me trouble. The site is probably due for an overhaul
