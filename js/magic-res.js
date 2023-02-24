@@ -1,6 +1,12 @@
+// these two URLs are API endpoints for an AWS server that I run. 
+// while the info is available on Disney's site, CORS protections keep it from running 
+// cleanly in a browser. 
+
 let dlrUrl = "https://qvgkpkmptt.us-west-2.awsapprunner.com/DLR";
 
 let wdwUrl = "https://qvgkpkmptt.us-west-2.awsapprunner.com/WDW";
+
+//this is a bootstrap library datepicker function from https://bootstrap-datepicker.readthedocs.io/en/latest/options.html
 
 $(document).ready(function () {
 	var date_input = $('input[name="date"]'); //our date input has the name "date"
@@ -40,6 +46,7 @@ function displayDate(date) {
 	modDate = `${strDay}/${strMonth}/${strYear}`;
 	return modDate;
 }
+
 /*hide and reveal contextual menus depending on resort*/
 function testResort(val) {
 	clearAvail();
@@ -117,8 +124,7 @@ function userData(resort, pass, park, parkDate) {
 
 /* fetches and sorts data into arrays for processing */
 function getWeekData(url, pass) {
-	
-	fetch(url) /* grab array from disney site */
+	fetch(url) /* grab array from API endpoint */
 		.then((response) => response.json())
 		.then((result) => {
 			var weekArray = [];
@@ -162,7 +168,7 @@ function getWeekData(url, pass) {
 }
 
 function getResortData(url, pass, park, parkDate) {
-	fetch(url) /* grab array from disney site */
+	fetch(url) /* grab array from API endpoint */
 		.then((response) => response.json())
 		.then((result) => {
 			var weekArray = [];
@@ -212,15 +218,15 @@ function getResortData(url, pass, park, parkDate) {
 
 /* function to display weekly data on the right third*/
 function displayWeek(weekArray) {
-	var weekDisplay = document.getElementById('weekCalendar').children;
-	for (let i = 0; i < weekDisplay.length; i++){
+	var weekDisplay = document.getElementById("weekCalendar").children;
+	for (let i = 0; i < weekDisplay.length; i++) {
 		var tableChild = weekDisplay[i];
 		tableChild.innerHTML = "";
-}
+	}
 	let currentWeek = 0;
 	for (element in weekArray) {
-		if (element == 0 || element%7==0){
-			currentWeek +=1;
+		if (element == 0 || element % 7 == 0) {
+			currentWeek += 1;
 		}
 
 		var weekDate = displayDate(weekArray[element].date);
@@ -279,18 +285,19 @@ function displayWeek(weekArray) {
 			addReason.innerHTML = textReason;
 
 			currentDivId = `week${element}Text${iterPark}`;
-			
 
 			document.getElementById(currentDivId).appendChild(img);
 			document.getElementById(currentDivId).appendChild(addReason);
 		}
 	}
 }
+
 /* constructor function for outer array element, listed by date */
 function dateObject(date, slot) {
 	this.date = date;
 	this.slot = slot;
 }
+
 /* constructor function for inner array element, aggregating park data by date for the week */
 function parkObject(weekPark, weekAvailable, weekReason) {
 	this.park = weekPark;
@@ -314,7 +321,7 @@ function weekCalendar() {
 		weekUrl = wdwUrl;
 	}
 	parkDate = document.querySelector("#date").value;
-	if (weekUrl != null && weekPass != null){
+	if (weekUrl != null && weekPass != null) {
 		getWeekData(weekUrl, weekPass);
 	}
 }
@@ -352,7 +359,6 @@ function cardNotification(notificationObject) {
 		newReason = document.createElement("p");
 		newReason.innerHTML = reasonText;
 
-		
 		const newDiv = document.createElement("div");
 		newDiv.classList = "avail-icons";
 		const currentDivId = "card-display";
@@ -372,7 +378,7 @@ function cardNotification(notificationObject) {
 		img.className = `park-icon`;
 		newReason = document.createElement("p");
 		newReason.innerHTML = reasonText;
-		
+
 		const newDiv = document.createElement("div");
 		newDiv.classList = "avail-icons";
 		const currentDivId = "card-display";

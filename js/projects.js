@@ -1,11 +1,11 @@
-const spaceBattle = document.getElementById('space-battle')
+const spaceBattle = document.getElementById("space-battle");
 
-spaceBattle.addEventListener('mouseover', () => {
-    spaceBattle.src = "/img/spaceBattle.gif"
+spaceBattle.addEventListener("mouseover", () => {
+	spaceBattle.src = "/img/spaceBattle.gif";
 });
 
-spaceBattle.addEventListener('mouseout', () => {
-    spaceBattle.src = "img/spaceBattleStatic.png"
+spaceBattle.addEventListener("mouseout", () => {
+	spaceBattle.src = "img/spaceBattleStatic.png";
 });
 
 const openBtn = document.getElementById("disneySite");

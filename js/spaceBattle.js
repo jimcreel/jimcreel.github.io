@@ -1,18 +1,18 @@
-
+// class for enemy ships
 
 class AlienShip {
 	constructor(name, id) {
 		this.name = name;
 		this.id = id;
 		this.maxHull = getRandom(3, 10);
-		this.hull = this.maxHull
+		this.hull = this.maxHull;
 		this.firepower = getRandom(2, 4);
 		this.accuracy = getRandom(6, 8) / 10;
 		this.isDestroyed = false;
 	}
 	attack = function (shooter, target) {
 		// returns hits as true, misses as false
-		
+
 		if (shooter.accuracy < getRandom(0, 1)) {
 			return true;
 		} else {
@@ -20,6 +20,8 @@ class AlienShip {
 		}
 	};
 }
+
+// subclass for hero ship 
 
 class HeroShip extends AlienShip {
 	name = "USS_Schwarzenegger";
@@ -34,16 +36,13 @@ class HeroShip extends AlienShip {
 		if (this.hull < 20 && this.hull != 0) {
 			let hullRepair = getRandom(0, 2);
 			let hullRepairPercentage = hullRepair * 0.05;
-			
-			this.hull += Math.round((hullRepairPercentage*this.hull * 10)/10);
-			
+
+			this.hull += Math.round((hullRepairPercentage * this.hull * 10) / 10);
 		}
 	};
-	
 }
 
 const game = {
-	// trying to see if I can isolate the loop like this
 
 	gameOver: false,
 
@@ -55,38 +54,31 @@ const game = {
 	calculateDamage: function (shooter, target, firepower) {
 		target.hull -= firepower;
 		if (target.hull <= 0) {
-			target.hull = 0; // this prevents a negative hull score in the dash
-			if (target.name === "USS_Schwarzenegger") { 
-				
-				let boom = document.getElementById('player-ship');
-				boom.src = "/img/explosion.png"
+			target.hull = 0; // this prevents a negative hull score in the dash, and doesn't break the health bar
+			if (target.name === "USS_Schwarzenegger") {
+				let boom = document.getElementById("player-ship");
+				boom.src = "/img/explosion.png";
 
 				game.gameOver = true;
 			} else {
-				let updateHull = document.getElementById(`alienHull${target.id}`)
+				let updateHull = document.getElementById(`alienHull${target.id}`);
 				updateHull.value = target.hull;
-				
+
 				target.isDestroyed = true;
-				let destroyEnemy = document.getElementById(`${target.id}`)
-				destroyEnemy.src = '/img/explosion.png'
-				
-				
+				let destroyEnemy = document.getElementById(`${target.id}`);
+				destroyEnemy.src = "/img/explosion.png";
+
 				setTimeout(() => {
-					
-					
-					let destroyDiv = document.getElementById(`alienDiv${target.id}`)
-					destroyDiv.remove();}, 500
-
-				)
-				
-
+					let destroyDiv = document.getElementById(`alienDiv${target.id}`);
+					destroyDiv.remove();
+				}, 500);
 			}
 		} else {
-			
-			
-
 		}
 	},
+	
+	// old code from the console version of the game 
+	// made unnecessary by point-and-click targeting in the browser version
 
 	/* targetEnemy: function () {
 		console.log(
@@ -117,8 +109,6 @@ const game = {
 		return alienIndex;
 	}, */
 
-	
-
 	displayHUD: function () {
 		console.table(enemies);
 		console.table(heroShip);
@@ -126,85 +116,70 @@ const game = {
 };
 let enemies = [];
 let heroShip = new HeroShip();
-console.table(heroShip)
+console.table(heroShip);
 let totalShips = 0;
 let currentEnemy = 0;
-let enemyAttack = '';
+let enemyAttack = "";
 
 // clear the battle log when the game is started
-const startButton = document.querySelector('#start-game');
-startButton.addEventListener('click', () => {
-	document.querySelector('aside').innerHTML = `<p id='hudName'>USS Schwarzenegger</p> <br> <p id='hudHull'>Hull: </p> <div class="progress" id="playerHealth" data-total = '20' data-value="20"> </div> <br> <p id='hudMissiles'>Missiles: ${heroShip.missiles}</p><br><p>Firepower: ${heroShip.firepower}`
-	
+const startButton = document.querySelector("#start-game");
+startButton.addEventListener("click", () => {
+	document.querySelector(
+		"aside"
+	).innerHTML = `<p id='hudName'>USS Schwarzenegger</p> <br> <p id='hudHull'>Hull: </p> <div class="progress" id="playerHealth" data-total = '20' data-value="20"> </div> <br> <p id='hudMissiles'>Missiles: ${heroShip.missiles}</p><br><p>Firepower: ${heroShip.firepower}`;
+
 	gameStart();
-})
+});
 
 // set up targeting
 
-
-
-
-
-let attackList = []
-
+let attackList = [];
 
 function gameLoop() {
-	
-		
-		
-		let heroAttackResult = heroShip.attack(heroShip, currentEnemy);
-		if (heroAttackResult) {
-			game.calculateDamage(heroShip, currentEnemy, heroShip.firepower);
-			updateHealthBar(currentEnemy);
-			checkEnd();
-		} else {
-			
-			for (i=0; i< enemies.length; i++){
-				if (!enemies[i].isDestroyed){
-					attackList.push(enemies[i].id)
-				}
-			}
-				
-			let multEnemyAttack = getRandom(1, attackList.length / 2); // allows up to half of remaining enemies to attack
-			
-			for (let i = 0; i < multEnemyAttack; i++) {
-				let randEnemyIndex = getRandom(0, attackList.length -1);
-				
-				
-				let attackIndex = attackList[randEnemyIndex]
-				let enemyAttack = enemies[attackIndex].attack(enemies[attackIndex], heroShip);
-			
-				let returnFlare = document.querySelector(`#alienFlare${attackIndex}`);
-				returnFlare.style.display = 'block';
-				// i thought it would be cool to have the alien ships show a barrel flare when they return fire, but it has introduced a bug (kind of)
-				// because I have to show the flare for a decent amount of time to have it register on the screen, it delays the 
-				// removal of the element from the attackList and keeps it in the array after it was destroyed.
-				// so for now i've limited the number of aliens who can return fire to two until i can figure out how to fix it.
-
-				setTimeout (() => returnFlare.style.display = 'none', 250)
-
-				
-				if (enemyAttack === false) {
-					
-				} else {
-					game.calculateDamage(
-						enemies[attackIndex],
-						heroShip,
-						enemies[attackIndex].firepower
-					);
-					updateHeroHealthBar();
-					
-				}
-			}
-			
-		}
+	let heroAttackResult = heroShip.attack(heroShip, currentEnemy);
+	if (heroAttackResult) {
+		game.calculateDamage(heroShip, currentEnemy, heroShip.firepower);
+		updateHealthBar(currentEnemy);
 		checkEnd();
-		attackList = []
-		heroShip.repairShields();
-		updateHeroHealthBar();
+	} else {
+		for (i = 0; i < enemies.length; i++) {
+			if (!enemies[i].isDestroyed) {
+				attackList.push(enemies[i].id);
+			}
+		}
+
+		let multEnemyAttack = getRandom(1, attackList.length / 2); // allows up to half of remaining enemies to attack
+
+		for (let i = 0; i < multEnemyAttack; i++) {
+			let randEnemyIndex = getRandom(0, attackList.length - 1);
+
+			let attackIndex = attackList[randEnemyIndex];
+			let enemyAttack = enemies[attackIndex].attack(
+				enemies[attackIndex],
+				heroShip
+			);
+
+			let returnFlare = document.querySelector(`#alienFlare${attackIndex}`);
+			returnFlare.style.display = "block";
 		
-		
-	
+
+			setTimeout(() => (returnFlare.style.display = "none"), 250);
+
+			if (enemyAttack === false) {
+			} else {
+				game.calculateDamage(
+					enemies[attackIndex],
+					heroShip,
+					enemies[attackIndex].firepower
+				);
+				updateHeroHealthBar();
+			}
+		}
+	}
+	checkEnd();
+	attackList = [];
+	heroShip.repairShields();
+	updateHeroHealthBar();
 }
 
 function getRandom(min, max) {
@@ -214,71 +189,65 @@ function getRandom(min, max) {
 
 function gameStart() {
 	// fills the enemy ship array with new AlienShips with random stats
-	document.getElementById('alien-fleet').innerHTML = ''
+	document.getElementById("alien-fleet").innerHTML = "";
 	const randomEnemies = getRandom(6, 12);
 	for (let i = 0; i < randomEnemies; i++) {
 		let alien = new AlienShip(`alien ship ${i}`, i);
 		enemies.push(alien);
-		let fleetWindow = document.getElementById('alien-fleet')
-		let alienDiv = document.createElement('div')
-		fleetWindow.appendChild(alienDiv) 
-		alienDiv.id = `alienDiv${i}`
-		alienDiv.setAttribute('class', 'alienDiv')
-		let alienHTML = document.createElement('img')
-		alienHTML.src = '/img/alien-ship.png';
-		alienHTML.alt = 'an alien spaceship';
-		alienHTML.setAttribute('class', 'alien')
-		alienHTML.setAttribute('id', `${i}` )
-		let alienFlare = document.createElement('img');
-		alienFlare.src = '/img/barrel-flare-reverse.png'
-		alienFlare.alt = 'alien barrel flare'
-		alienFlare.id = `alienFlare${i}`
-		let alienHull = document.createElement('div');
-		alienHull.classList = `progress`
-		alienHull.id = `alienHull${i}`
-		alienHull.setAttribute('data-total', `${alien.hull}`)
-		alienHull.setAttribute('data-value', `${alien.hull}`)
+		let fleetWindow = document.getElementById("alien-fleet");
+		let alienDiv = document.createElement("div");
+		fleetWindow.appendChild(alienDiv);
+		alienDiv.id = `alienDiv${i}`;
+		alienDiv.setAttribute("class", "alienDiv");
+		let alienHTML = document.createElement("img");
+		alienHTML.src = "/img/alien-ship.png";
+		alienHTML.alt = "an alien spaceship";
+		alienHTML.setAttribute("class", "alien");
+		alienHTML.setAttribute("id", `${i}`);
+		let alienFlare = document.createElement("img");
+		alienFlare.src = "/img/barrel-flare-reverse.png";
+		alienFlare.alt = "alien barrel flare";
+		alienFlare.id = `alienFlare${i}`;
+		let alienHull = document.createElement("div");
+		alienHull.classList = `progress`;
+		alienHull.id = `alienHull${i}`;
+		alienHull.setAttribute("data-total", `${alien.hull}`);
+		alienHull.setAttribute("data-value", `${alien.hull}`);
 		alienDiv.append(alienHull);
 		alienDiv.append(alienHTML);
-		alienDiv.append(alienFlare)
-		
-		
+		alienDiv.append(alienFlare);
 	}
-	const alienShips = document.querySelectorAll('.alien');
-	for (let alien of alienShips){
-		
-		alien.addEventListener('click', (event) => {
-			const barrelFlare = document.querySelector('img[alt="barrel flare"]')
-			barrelFlare.style.display = 'block'
+	const alienShips = document.querySelectorAll(".alien");
+	for (let alien of alienShips) {
+		alien.addEventListener("click", (event) => {
+			const barrelFlare = document.querySelector('img[alt="barrel flare"]');
+			barrelFlare.style.display = "block";
 			heroShip.firepower = 5;
-			currentEnemy = enemies[alien.id]
-			
-			setTimeout (() => barrelFlare.style.display = 'none', 1000)
+			currentEnemy = enemies[alien.id];
+
+			setTimeout(() => (barrelFlare.style.display = "none"), 1000);
 			// attack enemy ship
 			gameLoop();
-		})
-		alien.addEventListener('contextmenu', (event) => {
-			if (heroShip.missiles > 0){
-				
-				const barrelFlare = document.querySelector('img[alt="barrel flare"]')
-				barrelFlare.style.display = 'block'
+		});
+		alien.addEventListener("contextmenu", (event) => {
+			if (heroShip.missiles > 0) {
+				const barrelFlare = document.querySelector('img[alt="barrel flare"]');
+				barrelFlare.style.display = "block";
 				heroShip.firepower = 10;
-				currentEnemy = enemies[alien.id]
+				currentEnemy = enemies[alien.id];
 				heroShip.missiles -= 1;
-				setTimeout (() => barrelFlare.style.display = 'none', 1000)
+				setTimeout(() => (barrelFlare.style.display = "none"), 1000);
 				gameLoop();
-			}else{
-				alert('no missiles left!')
+			} else {
+				alert("no missiles left!");
 				return false;
 			}
-			
+
 			// attack enemy ship
 			gameLoop();
-		})
-		
+		});
 	}
 	totalShips = enemies.length;
-	
 }
 
 function checkEnd() {
@@ -286,7 +255,7 @@ function checkEnd() {
 	let shipsRemaining = game.alienShipsRemaining(enemies);
 
 	if (shipsRemaining === 0) {
-		alert('you win!')
+		alert("you win!");
 		game.gameOver = true;
 		gameRestart();
 		return true;
@@ -300,48 +269,43 @@ function checkEnd() {
 }
 
 function youLose(reason) {
-	
 	if (reason === "destroyed") {
-		alert('your ship has been destroyed')
+		alert("your ship has been destroyed");
 		gameRestart();
 	} else {
-		alert('you lose')
+		alert("you lose");
 		gameRestart();
 	}
 }
 
-function updateHealthBar(alien){
-	let healthBar = document.getElementById(`alienHull${alien.id}`)
+function updateHealthBar(alien) {
+	let healthBar = document.getElementById(`alienHull${alien.id}`);
 
-	 
-    healthBar.style.width = `${(alien.hull / alien.maxHull)*100}%`
-	
-    
+	healthBar.style.width = `${(alien.hull / alien.maxHull) * 100}%`;
 }
 
-function updateHeroHealthBar(){
-	let playerHealthBar = document.getElementById(`playerHealth`)
-	console.log(heroShip.hull)
-	console.log(heroShip.maxHull)
-	 
-   playerHealthBar.style.width = `${(heroShip.hull / heroShip.maxHull)*100}%`
-	
+function updateHeroHealthBar() {
+	let playerHealthBar = document.getElementById(`playerHealth`);
+	console.log(heroShip.hull);
+	console.log(heroShip.maxHull);
 
-    
+	playerHealthBar.style.width = `${(heroShip.hull / heroShip.maxHull) * 100}%`;
 }
 
-function gameRestart(){
-	let restartButton = document.createElement('button');
-		restartButton.innerHTML = 'Restart Game'
-		restartButton.addEventListener('click', () => {
-			heroShip.hull = 20
-			heroShip.missiles = 3
-			document.querySelector('aside').innerHTML = `<p id='hudName'>USS Schwarzenegger</p> <br> <p id='hudHull'>Hull: </p> <div class="progress" id="playerHealth" data-total = '20' data-value="20"> </div> <br> <p id='hudMissiles'>Missiles: ${heroShip.missiles}</p><br><p>Firepower: ${heroShip.firepower}`
-			document.getElementById('player-ship').src = '/img/player-ship.png'
-			enemies = []
-			gameStart();}
-		)
-		let alienFleet = document.getElementById('alien-fleet')
-		alienFleet.innerHTML='';
-		alienFleet.append(restartButton);
+function gameRestart() {
+	let restartButton = document.createElement("button");
+	restartButton.innerHTML = "Restart Game";
+	restartButton.addEventListener("click", () => {
+		heroShip.hull = 20;
+		heroShip.missiles = 3;
+		document.querySelector(
+			"aside"
+		).innerHTML = `<p id='hudName'>USS Schwarzenegger</p> <br> <p id='hudHull'>Hull: </p> <div class="progress" id="playerHealth" data-total = '20' data-value="20"> </div> <br> <p id='hudMissiles'>Missiles: ${heroShip.missiles}</p><br><p>Firepower: ${heroShip.firepower}`;
+		document.getElementById("player-ship").src = "/img/player-ship.png";
+		enemies = [];
+		gameStart();
+	});
+	let alienFleet = document.getElementById("alien-fleet");
+	alienFleet.innerHTML = "";
+	alienFleet.append(restartButton);
 }

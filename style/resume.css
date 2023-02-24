@@ -1,90 +1,75 @@
-
 .resume-header {
-    background-color: #434E5E;
-    color: rgba(255,255,255,0.9);
-    flex-wrap: wrap;
-    border-radius: 5px;
+	background-color: #434e5e;
+	color: rgba(255, 255, 255, 0.9);
+	flex-wrap: wrap;
+	border-radius: 5px;
 }
 
 .resume-header a {
-    color: rgba(255,255,255,0.6);
-    
+	color: rgba(255, 255, 255, 0.6);
 }
 
 .resume-wrapper {
-    margin-top: 5vh;
-    margin-left: 20vw;
-    max-width: 60vw;
+	margin-top: 5vh;
+	margin-left: 20vw;
+	max-width: 60vw;
 }
 
 .main-info {
-    flex-direction: column;
-    display: block;
-    
+	flex-direction: column;
+	display: block;
 }
 .secondary-info {
-    flex-direction: row;
-    display: flex;
-    padding: 3vh;
-    justify-content: flex-end;
-    max-width: 500px;
-
+	flex-direction: row;
+	display: flex;
+	padding: 3vh;
+	justify-content: flex-end;
+	max-width: 500px;
 }
 
-.secondary-info img{
-    max-width: 30px;
-    max-height: 30px;
-    margin: 10 10 10 10;
-    
+.secondary-info img {
+	max-width: 30px;
+	max-height: 30px;
+	margin: 10 10 10 10;
 }
 .links {
-    max-width: 150px;
-    
-    
+	max-width: 150px;
 }
 
-
-
 .row {
-    padding: 5vh;
+	padding: 5vh;
 }
 
 hr {
-    
-    width: 100%;
-    height: 1px black;
-    border: 1px solid black;
-
+	width: 100%;
+	height: 1px black;
+	border: 1px solid black;
 }
 
-
-#skills{
-    
-    gap: 10px;
+#skills {
+	gap: 10px;
 }
 
-.work { 
-    align-items: flex-start;
+.work {
+	align-items: flex-start;
 }
 
 .dates {
-    color: rgba(0,0,0,0.6)
-} 
+	color: rgba(0, 0, 0, 0.6);
+}
 
 #skills p {
-    margin-bottom: 0px;
-    margin-top: 10px;
+	margin-bottom: 0px;
+	margin-top: 10px;
 }
-
-
 
 .progress {
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 .labels {
-    font-size: 1.25em;
+	font-size: 1.25em;
 }
 
 p {
-    font-size: 1.2rem;
+	font-size: 1.2rem;
 }
