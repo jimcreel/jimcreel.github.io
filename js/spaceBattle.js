@@ -27,7 +27,7 @@ class HeroShip extends AlienShip {
 	firepower = 5;
 	accuracy = 0.7;
 	hull = 20;
-	maxhull = 20;
+	maxHull = 20;
 	missiles = 3;
 	missleFirepower = 10;
 	repairShields = function () {
@@ -126,6 +126,7 @@ const game = {
 };
 let enemies = [];
 let heroShip = new HeroShip();
+console.table(heroShip)
 let totalShips = 0;
 let currentEnemy = 0;
 let enemyAttack = '';
@@ -133,7 +134,7 @@ let enemyAttack = '';
 // clear the battle log when the game is started
 const startButton = document.querySelector('#start-game');
 startButton.addEventListener('click', () => {
-	document.querySelector('aside').innerHTML = `<p id='hudName'>USS Schwarzenegger</p> <br> <p id='hudHull'>Hull: ${heroShip.hull}</p> <br> <p id='hudMissiles'>Missiles: ${heroShip.missiles}</p><br><p>Firepower: ${heroShip.firepower}`
+	document.querySelector('aside').innerHTML = `<p id='hudName'>USS Schwarzenegger</p> <br> <p id='hudHull'>Hull: </p> <div class="progress" id="playerHealth" data-total = '20' data-value="20"> </div> <br> <p id='hudMissiles'>Missiles: ${heroShip.missiles}</p><br><p>Firepower: ${heroShip.firepower}`
 	
 	gameStart();
 })
@@ -318,11 +319,12 @@ function updateHealthBar(alien){
 }
 
 function updateHeroHealthBar(){
-	let healthBar = document.getElementById(`playerHealth`)
-
+	let playerHealthBar = document.getElementById(`playerHealth`)
+	console.log(heroShip.hull)
+	console.log(heroShip.maxHull)
 	 
-    healthBar.style.width = `${(heroShip.hull/heroShip.maxHull)*100}%`
-	document.querySelector('aside').innerHTML = `<p id='hudName'>USS Schwarzenegger</p> <br> <p id='hudHull'>Hull: ${heroShip.hull}</p> <br> <p id='hudMissiles'>Missiles: ${heroShip.missiles}</p><br><p>Firepower: ${heroShip.firepower}`
+   playerHealthBar.style.width = `${(heroShip.hull / heroShip.maxHull)*100}%`
+	
 
     
 }
@@ -333,7 +335,7 @@ function gameRestart(){
 		restartButton.addEventListener('click', () => {
 			heroShip.hull = 20
 			heroShip.missiles = 3
-			document.querySelector('aside').innerHTML = `<p id='hudName'>USS Schwarzenegger</p> <br> <p id='hudHull'>Hull: ${heroShip.hull}</p> <br> <p id='hudMissiles'>Missiles: ${heroShip.missiles}</p><br><p>Firepower: ${heroShip.firepower}`
+			document.querySelector('aside').innerHTML = `<p id='hudName'>USS Schwarzenegger</p> <br> <p id='hudHull'>Hull: </p> <div class="progress" id="playerHealth" data-total = '20' data-value="20"> </div> <br> <p id='hudMissiles'>Missiles: ${heroShip.missiles}</p><br><p>Firepower: ${heroShip.firepower}`
 			document.getElementById('player-ship').src = '/img/player-ship.png'
 			enemies = []
 			gameStart();}

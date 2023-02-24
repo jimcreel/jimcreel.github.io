@@ -44,7 +44,7 @@ body {
 
 aside {
     align-self: flex-start;
-    
+    text-align: left;
     min-width: 35vw;
     flex-grow: 1;
     background-color: rgba(0,0,0,0.6);
@@ -56,7 +56,7 @@ aside {
     max-width: 35vw;
     
     position: absolute;
-    bottom: 100px;
+    bottom: 50px;
     
     
 }
@@ -103,6 +103,7 @@ img[alt="player ship"] {
     max-width: 20vw;
 }
 .progress {
+  justify-content: left;
     background: yellowgreen;
   width: 100%;
   max-width: 100%;
@@ -124,5 +125,5 @@ img[alt="player ship"] {
 
 #playerHealth {
     max-width: 250px;
-    margin: 0 auto;
+    
 }
