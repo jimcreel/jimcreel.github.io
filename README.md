@@ -1,8 +1,8 @@
 # Jim Creel Portfolio
 
-<img src="/img/SiteScreenshot1.png" width="300">
-![Screenshot of the site](/img/SiteScreenshot2.png | width=300)
-![Screenshot of the site](/img/SiteScreenshot3.png | width=300)
+<img src="/img/SiteScreenshot1.png" width="300" alt="screenshots of the site">
+<img src="/img/SiteScreenshot2.png" width="300" alt="screenshots of the site">
+<img src="/img/SiteScreenshot3.png" width="300" alt="screenshots of the site">
 
 ## Technologies Used
 
@@ -28,9 +28,9 @@ n/a
 
 
 ## Wireframes
-![Wireframe images of the site](/img/Wireframes_Page_1.jpg)
-![Wireframe images of the site](/img/Wireframes_Page_2.jpg)
-![Wireframe images of the site](/img/Wireframes_Page_3.jpg)
+<img src="img/Wireframes_Page_1.jpg" width="300" alt="wireframe image of site">
+<img src="img/Wireframes_Page_2.jpg" width="300" alt="wireframe image of site">
+<img src="img/Wireframes_Page_3.jpg" width="300" alt="wireframe image of site">
 
 
 ## Unsolved Problems
