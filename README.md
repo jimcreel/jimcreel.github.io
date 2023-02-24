@@ -1,8 +1,8 @@
 # Jim Creel Portfolio
 
-![Screenshot of the site](/img/SiteScreenshot1.png)
-![Screenshot of the site](/img/SiteScreenshot2.png)
-![Screenshot of the site](/img/SiteScreenshot3.png)
+![Screenshot of the site](/img/SiteScreenshot1.png | width=300)
+![Screenshot of the site](/img/SiteScreenshot2.png | width=300)
+![Screenshot of the site](/img/SiteScreenshot3.png | width=300)
 
 ## Technologies Used
 
