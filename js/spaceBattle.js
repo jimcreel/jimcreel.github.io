@@ -193,11 +193,12 @@ function gameLoop() {
 						enemies[attackIndex].firepower
 					);
 					updateHeroHealthBar();
-					checkEnd();
+					
 				}
 			}
 			
 		}
+		checkEnd();
 		attackList = []
 		heroShip.repairShields();
 		updateHeroHealthBar();
