@@ -134,7 +134,7 @@ let enemyAttack = '';
 // clear the battle log when the game is started
 const startButton = document.querySelector('#start-game');
 startButton.addEventListener('click', () => {
-	document.querySelector('aside').innerHTML = `<p id='hudName'>USS Schwarzenegger</p> <br> <p id='hudHull'>Hull: ${heroShip.hull}</p> <br> <p id='hudMissiles'>Missiles: ${heroShip.missiles}</p><br><p>Firepower: ${heroShip.firepower}`
+	document.querySelector('aside').innerHTML = `<p id='hudName'>USS Schwarzenegger</p> <br> <p id='hudHull'>Hull: </p> <div class="progress" id="playerHealth" data-total = '20' data-value="20"> </div> <br> <p id='hudMissiles'>Missiles: ${heroShip.missiles}</p><br><p>Firepower: ${heroShip.firepower}`
 	
 	gameStart();
 })
@@ -324,7 +324,7 @@ function updateHeroHealthBar(){
 	console.log(heroShip.maxHull)
 	 
    playerHealthBar.style.width = `${(heroShip.hull / heroShip.maxHull)*100}%`
-	document.querySelector('aside').innerHTML = `<p id='hudName'>USS Schwarzenegger</p> <br> <p id='hudHull'>Hull: ${heroShip.hull}</p> <br> <p id='hudMissiles'>Missiles: ${heroShip.missiles}</p><br><p>Firepower: ${heroShip.firepower}`
+	
 
     
 }
@@ -335,7 +335,7 @@ function gameRestart(){
 		restartButton.addEventListener('click', () => {
 			heroShip.hull = 20
 			heroShip.missiles = 3
-			document.querySelector('aside').innerHTML = `<p id='hudName'>USS Schwarzenegger</p> <br> <p id='hudHull'>Hull: ${heroShip.hull}</p> <br> <p id='hudMissiles'>Missiles: ${heroShip.missiles}</p><br><p>Firepower: ${heroShip.firepower}`
+			document.querySelector('aside').innerHTML = `<p id='hudName'>USS Schwarzenegger</p> <br> <p id='hudHull'>Hull: </p> <div class="progress" id="playerHealth" data-total = '20' data-value="20"> </div> <br> <p id='hudMissiles'>Missiles: ${heroShip.missiles}</p><br><p>Firepower: ${heroShip.firepower}`
 			document.getElementById('player-ship').src = '/img/player-ship.png'
 			enemies = []
 			gameStart();}
