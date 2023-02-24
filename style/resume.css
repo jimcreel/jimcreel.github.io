@@ -26,7 +26,7 @@
     flex-direction: row;
     display: flex;
     padding: 3vh;
-    align-items: flex-end;
+    justify-content: flex-end;
     max-width: 500px;
 
 }
@@ -35,10 +35,15 @@
     max-width: 30px;
     max-height: 30px;
     margin: 10 10 10 10;
+    
 }
 .links {
-    align-items: flex-start;
+    max-width: 150px;
+    
+    
 }
+
+
 
 .row {
     padding: 5vh;
