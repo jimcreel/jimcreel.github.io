@@ -16,7 +16,8 @@
 
 ## Installation Instructions
 
-n/a
+- clone the repository
+- open index.html in a browser
 
 ## User Stories
 
