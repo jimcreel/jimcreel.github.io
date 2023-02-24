@@ -85,7 +85,8 @@ body{
     
 } 
 #weekCalendar{
-    margin: 10px 60px 10px 60px;
+    width: 75vw;
+    margin: 0 auto;
     
 }
 .weekDates {

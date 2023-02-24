@@ -43,6 +43,7 @@ body {
 
 aside {
     align-self: flex-start;
+    
     min-width: 35vw;
     flex-grow: 1;
     background-color: rgba(0,0,0,0.6);
@@ -50,8 +51,12 @@ aside {
     color: white;
     padding: 20px;
     border-radius: 20px;
-    margin: 2vh 0;
-    max-height: 500px;
+    max-height: 300px;
+    max-width: 35vw;
+    
+    position: absolute;
+    bottom: 100px;
+    
     
 }
 
