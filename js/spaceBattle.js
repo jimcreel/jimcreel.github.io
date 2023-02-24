@@ -35,7 +35,7 @@ class HeroShip extends AlienShip {
 			let hullRepair = getRandom(0, 2);
 			let hullRepairPercentage = hullRepair * 0.05;
 			
-			this.hull += (hullRepairPercentage*this.hull);
+			this.hull += Math.round((hullRepairPercentage*this.hull * 10)/10);
 			
 		}
 	};
@@ -131,7 +131,7 @@ let currentEnemy = 0;
 let enemyAttack = '';
 
 // clear the battle log when the game is started
-const startButton = document.querySelector('aside button');
+const startButton = document.querySelector('#start-game');
 startButton.addEventListener('click', () => {
 	document.querySelector('aside').innerHTML = `<p id='hudName'>USS Schwarzenegger</p> <br> <p id='hudHull'>Hull: ${heroShip.hull}</p> <br> <p id='hudMissiles'>Missiles: ${heroShip.missiles}</p><br><p>Firepower: ${heroShip.firepower}`
 	
