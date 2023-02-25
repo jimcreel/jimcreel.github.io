@@ -70,14 +70,24 @@ body {
 	height: 35px;
 }
 #weekCalendar {
-	width: 75vw;
-	margin: 0 auto;
-}
-.weekDates {
-	width: max-content;
-	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
+.dayNumber {
+	border: 1px solid red;
+	max-width: 20px;
+	max-height: 20px;
+	
+}
+.dayContainer {
+	border: 1px solid green;
+	min-width: 12vw;
+	min-height: 12vw;
+	
+	display: flex;
+}
 .date {
 	display: flex;
 	flex-direction: row;
@@ -88,6 +98,25 @@ body {
 
 	margin-bottom: 4px !important;
 	margin-top: 4px !important;
+}
+.weekDates {
+	
+	border: 1px solid black;
+	display: flex;
+	
+}
+#monthHeader {
+	text-align: center;
+}
+
+#dayNameHeader {
+	display: flex;
+	flex-direction: row;
+}
+
+.dayNames {
+	min-width: 12vw;
+	text-align: center;
 }
 @media (max-width: 1250px) {
 	#weekDates {
@@ -107,11 +136,7 @@ body {
 	h5 {
 		font-size: 15px;
 	}
-	div {
-		margin: auto;
 
-		min-width: 200px;
-	}
 	p {
 		font-size: 12px;
 		line-height: 24px;
@@ -123,11 +148,7 @@ body {
 	small {
 		font-size: 16px;
 	}
-	#weekCalendar {
-		margin-left: 0 !important;
-		margin-right: 0 !important;
-		margin-top: 20px;
-	}
+
 	.week {
 		min-width: 200px;
 		max-width: 225px;

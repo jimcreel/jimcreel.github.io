@@ -161,7 +161,7 @@ function getWeekData(url, pass) {
 							}
 						}
 					}
-					displayWeek(weekArray);
+					// displayWeek(weekArray);
 				}
 			}
 		});
@@ -209,7 +209,7 @@ function getResortData(url, pass, park, parkDate) {
 									}
 							}
 						}
-						displayWeek(weekArray);
+						// displayWeek(weekArray);
 					}
 				}
 			}
@@ -217,7 +217,7 @@ function getResortData(url, pass, park, parkDate) {
 }
 
 /* function to display weekly data on the right third*/
-function displayWeek(weekArray) {
+/* function displayWeek(weekArray) {
 	var weekDisplay = document.getElementById("weekCalendar").children;
 	for (let i = 0; i < weekDisplay.length; i++) {
 		var tableChild = weekDisplay[i];
@@ -290,7 +290,7 @@ function displayWeek(weekArray) {
 			document.getElementById(currentDivId).appendChild(addReason);
 		}
 	}
-}
+} */
 
 /* constructor function for outer array element, listed by date */
 function dateObject(date, slot) {
@@ -419,3 +419,86 @@ function switchParkName(parkName) {
 	}
 	return parkText;
 }
+
+let currentTime = new Date();
+
+let currentMonth = currentTime.getMonth(); 
+
+
+switch (currentMonth){
+
+case 0: 
+	monthName = "January";
+	break;
+case 1: 
+	monthName = "February";
+	break;
+case 2:
+	monthName = "March";
+	break;
+case 3: 
+	monthName = "April";
+	break;
+case 4: 
+	monthName = "May";
+	break;
+case 5:
+	monthName = "June";
+	break;
+case 6:
+	monthName = "July";
+	break;
+case 7:
+	monthName = "August";
+	break;
+case 8:
+	monthName = "September";
+	break;
+case 9:
+	monthName = "October";
+	break;
+case 10:
+	monthName = "November";
+	break;
+case 11:
+	monthName = "December";
+	break;
+}
+
+
+
+const beginDate = new Date("2023-01-02");
+const lastDate = new Date("2023-12-31");
+const dates = [];
+
+while(beginDate<=lastDate){
+	dates.push(new Date(beginDate));
+	beginDate.setDate(beginDate.getDate() +1);	
+}
+
+
+
+document.getElementById('monthHeader').innerText = monthName;
+let dayNum = currentTime.getDay();
+console.log(dayNum)
+let dateArray = document.getElementsByClassName('dayContainer');
+console.log(dateArray)
+let dateNum = currentTime.getDate();
+console.log(dateNum) 
+let dateIndexOffset = getDayOfYear(currentTime);
+
+for (let i = 0; i < dateArray.length; i++){
+	let currentDayId = document.getElementById(`day${i}`)
+	console.log(currentDayId)
+	let currentDay = dates[dateIndexOffset - dayNum-1+i]
+	console.log(currentDay)
+	currentDayId.innerHTML = `${currentDay.getDate()}`
+	
+}
+
+function getDayOfYear(date) {
+	const startOfYear = new Date(date.getFullYear(), 0, 0);
+	const diff = date - startOfYear;
+	const oneDay = 1000 * 60 * 60 * 24;
+	return Math.floor(diff / oneDay);
+  }
