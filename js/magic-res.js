@@ -470,29 +470,39 @@ case 11:
 const beginDate = new Date("2023-01-02");
 const lastDate = new Date("2023-12-31");
 const dates = [];
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
+'November', 'December']
 
 while(beginDate<=lastDate){
 	dates.push(new Date(beginDate));
 	beginDate.setDate(beginDate.getDate() +1);	
 }
 
+// fill the calendar headers with the current month + 3
+for (let i = 0; i<4; i++){
+	let currentMonth = document.getElementById(`monthHeader${i}`);
+	let thisMonth = new Date().getMonth() + i;
+	currentMonth.innerText = `${months[thisMonth]}`
 
+}
 
-document.getElementById('monthHeader').innerText = monthName;
-let dayNum = currentTime.getDay();
-console.log(dayNum)
 let dateArray = document.getElementsByClassName('dayContainer');
-console.log(dateArray)
-let dateNum = currentTime.getDate();
-console.log(dateNum) 
-let dateIndexOffset = getDayOfYear(currentTime);
+let firstMonthDate = new Date(currentTime.getFullYear(), currentTime.getMonth(), 1);
+
+let firstDateIndex = firstMonthDate.getDay();
+console.log(firstDateIndex)
+let datesIndex = getDayOfYear(firstMonthDate)
+
+
+
 
 for (let i = 0; i < dateArray.length; i++){
-	let currentDayId = document.getElementById(`day${i}`)
-	console.log(currentDayId)
-	let currentDay = dates[dateIndexOffset - dayNum-1+i]
-	console.log(currentDay)
-	currentDayId.innerHTML = `${currentDay.getDate()}`
+	if (i === 0) {
+		i += firstDateIndex;
+	}
+	document.getElementById(`day${i}`).innerHTML = dates[datesIndex + i - firstDateIndex - 1].getDate();
+	
+	
 	
 }
 
