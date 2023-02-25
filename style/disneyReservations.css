@@ -73,19 +73,19 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	margin: 20px;
 }
 
 .dayNumber {
 	border: 1px solid red;
-	max-width: 20px;
-	max-height: 20px;
+	width: 60px;
+	height: 60px;
 	
 }
 .dayContainer {
 	border: 1px solid green;
-	min-width: 12vw;
-	min-height: 12vw;
-	
+	width: 60px;
+	height: 60px;
 	display: flex;
 }
 .date {
@@ -115,10 +115,21 @@ body {
 }
 
 .dayNames {
-	min-width: 12vw;
+	width: 60px;
 	text-align: center;
+	
 }
-@media (max-width: 1250px) {
+
+#forecastCalendar {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin: 0 auto;
+	
+	
+
+}
+/* @media (max-width: 1250px) {
 	#weekDates {
 		max-width: 225px;
 		margin: auto;
@@ -159,3 +170,4 @@ body {
 		max-height: 32px;
 	}
 }
+ */
