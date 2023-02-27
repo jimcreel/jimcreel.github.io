@@ -467,17 +467,26 @@ case 11:
 
 
 
-const beginDate = new Date("2023-01-02");
-const lastDate = new Date("2023-12-31");
-const dates = [];
+const beginDate = new Date("2023-01-01");
+const lastDate = new Date("2025-12-31");
+const year = [];
+
+
+
+while(beginDate<=lastDate){
+	let week = [];
+    for (let i = 0; i < 7; i++){
+        week.push(new Date(beginDate))
+        beginDate.setDate(beginDate.getDate() +1)
+        
+    }
+    year.push(week);
+}
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
 'November', 'December']
 
-while(beginDate<=lastDate){
-	dates.push(new Date(beginDate));
-	beginDate.setDate(beginDate.getDate() +1);	
-}
-
+let weekNumber = getDayOfYear(currentTime)
+console.log(`this is the ${weekNumber} week of the year`)
 // fill the calendar headers with the current month + 3
 for (let i = 0; i<4; i++){
 	let currentMonth = document.getElementById(`monthHeader${i}`);
@@ -495,20 +504,8 @@ let datesIndex = getDayOfYear(firstMonthDate)
 
 
 
-
-for (let i = 0; i < dateArray.length; i++){
-	if (i === 0) {
-		i += firstDateIndex;
-	}
-	document.getElementById(`day${i}`).innerHTML = dates[datesIndex + i - firstDateIndex - 1].getDate();
-	
-	
-	
-}
-
 function getDayOfYear(date) {
-	const startOfYear = new Date(date.getFullYear(), 0, 0);
-	const diff = date - startOfYear;
-	const oneDay = 1000 * 60 * 60 * 24;
-	return Math.floor(diff / oneDay);
+	const startOfYear = new Date(date.getFullYear(), 0, 1);
+	let numDays = Math.floor((date - startOfYear) / (24*60*60*1000));
+	return Math.floor((date.getDay() + numDays) / 7);
   }
