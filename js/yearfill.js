@@ -27,11 +27,7 @@ let fourMonths = getNextFourMonths();
 for (i = 0; i < fourMonths.length; i++){
     let currentMonth = fourMonths[i];
     console.log(currentMonth)
-    let firstday = currentMonth[0].getDay();
-    console.log(firstday);
-    for (j = 0; j < firstday; j++){
-        currentMonth.unshift(' ');
-    }
+    
 }
 console.log(fourMonths)
 
