@@ -109,3 +109,15 @@ article {
 .next {
 	margin: 50px;
 }
+
+.carousel-item{
+	background-color: rgb(221, 211, 211);
+	padding: 5vh;
+}
+.carousel-item p{
+	margin: 5vh 20vw 5vh 20vw;
+}
+
+.carousel-item h2, h4{
+	text-align: center;
+}

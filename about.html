@@ -19,8 +19,7 @@
     <link href='https://unpkg.com/css.gg@2.0.0/icons/css/chevron-left.css' rel='stylesheet'>
     <title></title>
   </head>
-  <body>
-    <!-- navbar from bootstrap 4 -->
+<body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Jim Creel</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,71 +34,80 @@
             <li class="nav-item">
               <a class="nav-link" href="projects.html">Projects</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="resume.html">Resume
-                </a>
-              </li>
+            
               <li class="nav-item">
                 <a class="nav-link" href="about.html">About
                 </a>
               </li>
               
+              
         </div>
       </nav>
-
-      <div class="container" id="main">
-        
-        <div class="row picture-box">
-          <div class="carousel-button prev">
-            <i class="gg-chevron-left"></i>
-          </div> 
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="jumbotron jumbotron-fluid">
+              <div class="container">
+                <h1 class="display-4">Jim Creel</h1>
+                <p class="lead">Experience</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="experience-carousel" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <h2>Assistant Professor of English</h2>
+              <h4>University of Wyoming</h4>
+              <h4> 2015-2023</h4>
+              <p> After completing a Ph.D. in Rhetoric and Composition at TCU, I went to work for
+                UW as a tenure-track assistant professor. I taught courses in technical writing - 
+                including Writing for Tech and Sciences - and developed courses and curriculum
+                including video game design, film, and cultural studies. I wrote grants to build 
+                video game design labs and to develop a new minor in Film Studies. I also built and maintained
+                a digital film archive so that students during the COVID-19 pandemic would have access
+                to films for their courses. During this time, I also published research in rhetoric, cultural studies,
+                video games, and film studies. My work appears in <i>The Games Culture Reader, The Journal for Popular Culture</i>, and at <i><a href='http://journalofmultimodalrhetorics.com/'>The Journal of Multimodal Rhetorics</a></i></p>
             
-              <img src="/img/img1.png" class="boxes">
               
-              <img src="/img/img5.png" class="boxes">
-           
-              <img src="/img/img2.png" class="boxes">
-            
-              <img src="/img/img3.png" class="boxes">
-            
-              <img src="/img/img4.png" class="boxes">
-            
+                
+            </div>
+            <div class="carousel-item">
+              <h2>Software Engineer</h2>
+              <p>After eight years of teaching and writing, I realized that I wanted a more concrete work
+                pattern with tangible outcomes. I decided to pursue a career in software engineering and taught
+                myself Python, starting with web scrapers that sent text and email notifications for limited
+                edition merchandise online. I branched out at the advice of my brother, teaching myself JavaScript
+                and building my first full-stack web application using Javascript and Python to check Disney Parks reservations and send 
+                notifications when dates were available. I then enrolled in General Assembly's Software Engineering Immersive
+                program, where I used my final projects to really stretch my skills by taking on large, complex
+                datasets. I graduated in May 2023, and am looking for opportunities that will benefit from my 
+                ability to learn quickly and adapt to new situations.</p>
+                </p>
+              </div>
               
-            
-            
-        <div class="carousel-button next">
-          <i class="gg-chevron-right"></i>
-        </div>
-            
-        
-      </div>
-        <div class="text-box">
-          <h2>Jim Creel</h2>  
-          <br>
-          <article> 
-            Jim is a former English Professor whose work on film and video games has been published in 
-            world-renowned academic books and journals since 2013. With a background in teaching, tech writing, computer science, networking, 
-            and humanities, Jim brings a unique blend of expertise to every project. When he's not coding, he loves downhill mountain biking, baseball, and 
-            taking his kids to Disneyland. 
-            </article>
-            
-        </div>
-
+          </div>
+          <a class="carousel-control-prev" href="#experience-carousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#experience-carousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
       </div>
-      
 
+  <!-- Optional JavaScript -->
+  <script src="/js/app.js" defer></script>
 
-    <!-- Optional JavaScript -->
-    <script src="/js/app.js" defer></script>
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+</body>
 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
-  </body>
-
-  <!-- attribute for the background image from freekpik.com -->
-  <footer class="footer"> <a href="https://www.freepik.com/free-photo/empty-elegant-background-with-copy-space_20838501.htm#page=3&query=minimalist%20background&position=6&from_view=search&track=ais">Image by denamorado</a> on Freepik</footer>
+<!-- attribute for the background image from freekpik.com -->
+<footer class="footer"> <a href="https://www.freepik.com/free-photo/empty-elegant-background-with-copy-space_20838501.htm#page=3&query=minimalist%20background&position=6&from_view=search&track=ais">Image by denamorado</a> on Freepik</footer>
 </html>

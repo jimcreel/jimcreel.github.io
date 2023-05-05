@@ -1,6 +1,12 @@
 * {
 	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
+.container { 
+	justify-content: center;
+	align-items: center	;
+	margin: 0 auto;
+	display: flex;
+}
 
 #modal {
 	background-color: rgba(0, 0, 0, 0.4);
@@ -46,16 +52,15 @@ h1 {
 	cursor: pointer;
 }
 
-.pics {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	height: 500px;
 
-}
 
 .pics a {
 	justify-self: flex-start;
+}
+.pics img { 
+	width: 100%;
+	height: auto;
+	max-height: 225px;
 }
 
 .dates {
