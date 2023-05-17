@@ -4,7 +4,7 @@ export default function History() {
     return (
         <>
         <div className='flex justify-'>
-            <Card className='border-2 border-accent w-1/3 text-accent shadow-sm rounded p-5 m-2'>
+            <Card className='border-2 border-secondary w-1/3 text-accent shadow-sm rounded p-5 m-2'>
                 <Card.Body>
                     <Card.Title className='text-center text-xl'>Humanities</Card.Title>
                     <Card.Text>
@@ -21,7 +21,7 @@ export default function History() {
                 
 
             </Card>
-            <Card className='border-2 border-accent w-1/3 text-accent shadow-sm rounded p-5 m-2'>
+            <Card className='border-2 border-secondary w-1/3 text-accent shadow-sm rounded p-5 m-2'>
                 <Card.Body>
                     <Card.Title className='text-center text-xl'>Tech</Card.Title>
                     <Card.Text>
@@ -41,7 +41,7 @@ export default function History() {
                 
 
             </Card>
-            <Card className='border-2 border-accent w-1/3 text-accent shadow-sm rounded p-5 m-2'>
+            <Card className='border-2 border-secondary w-1/3 text-accent shadow-sm rounded p-5 m-2'>
                 <Card.Body>
                     <Card.Title className='text-center text-xl'>Personal</Card.Title>
                     <Card.Text>

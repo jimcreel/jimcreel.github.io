@@ -10,10 +10,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#cc2a49',
-        secondary: '#f36f38',
-        accent: '#f99e4c',
-        black: '#582841',
+        primary: '#562b08',
+        secondary: '#647e68',
+        accent: '#d8d8d8',
+        black: '#182747',
         },
       fontFamily: {
         'bold': ['Roboto Slab', 'serif'],
