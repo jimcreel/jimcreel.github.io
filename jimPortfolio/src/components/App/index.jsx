@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-      <div className="bg-gradient-to-b from-black from-40% to-secondary h-screen">
+      <div className="bg-gradient-to-b from-black from-40% to-primary h-screen">
       <Nav />
       <NameTag />
       <History></History>
