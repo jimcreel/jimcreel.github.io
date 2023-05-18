@@ -5,7 +5,7 @@ export default function Nav () {
         
         <nav className='bg-black text-secondary font-sans text-xl' >
             <ul className='flex flex-row justify-start items-center' >
-            <Link to="/home" ><li className='m-2'>Home</li></Link>
+            <Link to="/" ><li className='m-2'>Home</li></Link>
             <Link to="/about"><li className='m-2'>About</li></Link>
             <Link to="/projects"><li className='m-2'>Projects</li></Link>
             <li className='m-2'><a href='https://github.com/jimcreel'><img src='../../src/assets/img/github-mark-white.svg' className='w-[25px]'/></a></li>
