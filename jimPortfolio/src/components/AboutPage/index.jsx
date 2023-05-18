@@ -1,8 +1,9 @@
 export default function AboutPage() {
     return (
         <> 
-         <div className="flex flex-col justify-between" > 
-            <div className='text-secondary font-bold text-right'>
+        <div className="flex justify-center">
+         <div className="flex flex-col justify-between w-[70%] text-" > 
+            <div className='text-secondary font-bold'>
          
                 <p>
                     I'm a full stack software engineer looking for
@@ -16,7 +17,7 @@ export default function AboutPage() {
             
                 </p>   
             </div>
-            <div className='text-accent m-5 justify-self-end text-lg'>
+            <div className='text-accent m-5 justify-self-end text-lg w-[70%]'>
                 My Experience: 
                 <div className='flex flex-row flex-wrap justify-around text-4xl sm:text-6xl' >
           
@@ -44,6 +45,7 @@ export default function AboutPage() {
                 <i className="m-1 devicon-sass-original"></i>
                 <i className="m-1 devicon-tailwindcss-original-wordmark"></i>
                 
+                </div>
                 </div>
           
           
