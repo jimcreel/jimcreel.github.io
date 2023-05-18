@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  .font-outline-2 {
+    -webkit-text-stroke: 2px #9f8f8f;
+  }
+  .font-outline-4 {
+    -webkit-text-stroke: 4px #d8d8d8;
+  }
+}
 
 * {
     margin: 0;
@@ -12,3 +20,5 @@
   body {
     min-height: 100vh;
   }
+
+  
