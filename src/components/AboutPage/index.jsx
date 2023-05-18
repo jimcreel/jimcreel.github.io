@@ -3,7 +3,7 @@ export default function AboutPage() {
         <> 
         <div className="flex justify-center">
          <div className="flex flex-col justify-between w-[70%] text-" > 
-            <div className='text-secondary font-bold'>
+            <div className='text-secondary font-bold py-40'>
          
                 <p>
                     I'm a full stack software engineer looking for
